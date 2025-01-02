@@ -146,7 +146,7 @@ export const HeroSection = () => {
             <HoverCard>
               <motion.div whileHover={{ scale: 1.05, filter: "brightness(1.1)" }}>
                 <Image
-                  src="/profile/avatar.svg"
+                  src="/profile/profile.jpeg"
                   alt="Profile picture"
                   width={400}
                   height={400}
