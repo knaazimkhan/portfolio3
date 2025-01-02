@@ -1,6 +1,10 @@
 import { Skeleton } from "@/components/ui/skeleton";
 
-export const SkillCardSkeleton = () => {
+interface SkillCardSkeletonProps {
+  index?: number;
+}
+
+export const SkillCardSkeleton: React.FC<SkillCardSkeletonProps> = ({ index = 0 }) => {
   return (
     <div className="group relative rounded-lg border bg-background/50 p-6 backdrop-blur-sm">
       <div className="flex items-center gap-3 mb-4">
