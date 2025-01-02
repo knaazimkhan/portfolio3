@@ -1,57 +1,31 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { ThemeProvider } from "@/components/theme-provider";
+import { cn } from "@/lib/utils";
 import "./globals.css";
-import { ThemeProvider } from "@/components/layout/ThemeProvider";
-import { Analytics } from "@/components/analytics";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: {
-    default: "Naazim Khan - Portfolio",
-    template: "%s | Naazim Khan",
+    default: "Your Name - Portfolio",
+    template: "%s | Your Name",
   },
-  description: "Software Engineer specializing in web development and modern technologies. View my projects and skills.",
+  description: "Full-stack developer specializing in React, Next.js, and modern web technologies. View my projects, skills, and experience.",
   keywords: [
-    "Naazim Khan",
-    "Software Engineer",
-    "web development",
-    "frontend developer",
-    "full-stack developer",
-    "react",
-    "nextjs",
-    "typescript",
-    "portfolio",
+    "Full-stack Developer",
+    "React Developer",
+    "Next.js Developer",
+    "Web Development",
+    "Frontend Development",
+    "Backend Development",
+    "JavaScript",
+    "TypeScript",
+    "Portfolio",
   ],
-  authors: [{ name: "Naazim Khan" }],
-  creator: "Naazim Khan",
-  metadataBase: new URL("https://naazimkhan.com"),
-  alternates: {
-    canonical: "/",
-  },
-  openGraph: {
-    type: "website",
-    locale: "en_US",
-    url: "https://naazimkhan.com",
-    title: "Naazim Khan - Portfolio",
-    description: "Software Engineer specializing in web development and modern technologies. View my projects and skills.",
-    siteName: "Naazim Khan Portfolio",
-    images: [
-      {
-        url: "/og-image.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Naazim Khan - Software Engineer Portfolio",
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Naazim Khan - Portfolio",
-    description: "Software Engineer specializing in web development and modern technologies. View my projects and skills.",
-    creator: "@knaazimkhan",
-    images: ["/og-image.jpg"],
-  },
+  authors: [{ name: "Your Name" }],
+  creator: "Your Name",
+  publisher: "Your Name",
   robots: {
     index: true,
     follow: true,
@@ -63,9 +37,66 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
-  verification: {
-    google: "a7PgGNqD3V9omRRXJDDsbNs8L6dK3d20vAcmFQTaGyw",
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://your-portfolio.com",
+    title: "Your Name - Full-stack Developer Portfolio",
+    description: "Full-stack developer specializing in React, Next.js, and modern web technologies. View my projects, skills, and experience.",
+    siteName: "Your Name Portfolio",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Your Name - Portfolio Preview",
+      },
+    ],
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Your Name - Full-stack Developer Portfolio",
+    description: "Full-stack developer specializing in React, Next.js, and modern web technologies. View my projects, skills, and experience.",
+    creator: "@your_twitter",
+    images: ["/og-image.png"],
+  },
+  icons: {
+    icon: "/favicon.ico",
+    shortcut: "/favicon-16x16.png",
+    apple: "/apple-touch-icon.png",
+  },
+  manifest: "/site.webmanifest",
+  alternates: {
+    canonical: "https://your-portfolio.com",
+  },
+};
+
+// JSON-LD structured data
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Your Name",
+  url: "https://your-portfolio.com",
+  image: "https://your-portfolio.com/profile.jpg",
+  sameAs: [
+    "https://github.com/yourusername",
+    "https://linkedin.com/in/yourusername",
+    "https://twitter.com/yourusername",
+  ],
+  jobTitle: "Full-stack Developer",
+  worksFor: {
+    "@type": "Organization",
+    name: "Your Company",
+  },
+  description: "Full-stack developer specializing in React, Next.js, and modern web technologies.",
+  knowsAbout: [
+    "Web Development",
+    "React",
+    "Next.js",
+    "TypeScript",
+    "Node.js",
+    "Full-stack Development",
+  ],
 };
 
 export default function RootLayout({
@@ -75,7 +106,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.className} min-h-screen bg-background antialiased`}>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
+      <body className={cn(inter.className, "min-h-screen bg-background antialiased")}>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
@@ -83,7 +120,6 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           {children}
-          <Analytics />
         </ThemeProvider>
       </body>
     </html>

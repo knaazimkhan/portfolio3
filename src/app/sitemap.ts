@@ -1,58 +1,44 @@
 import { MetadataRoute } from "next";
-import { projects } from "@/data/projects";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://naazimkhan.com";
+  const baseUrl = "https://your-portfolio.com";
 
-  // Base routes
-  const routes = [
+  return [
     {
       url: baseUrl,
       lastModified: new Date(),
-      changeFrequency: "monthly" as const,
+      changeFrequency: "monthly",
       priority: 1,
     },
     {
-      url: `${baseUrl}/#about`,
+      url: `${baseUrl}/projects`,
       lastModified: new Date(),
-      changeFrequency: "monthly" as const,
+      changeFrequency: "weekly",
       priority: 0.8,
     },
     {
-      url: `${baseUrl}/#projects`,
+      url: `${baseUrl}/skills`,
       lastModified: new Date(),
-      changeFrequency: "weekly" as const,
-      priority: 0.8,
+      changeFrequency: "monthly",
+      priority: 0.7,
     },
     {
-      url: `${baseUrl}/#skills`,
+      url: `${baseUrl}/education`,
       lastModified: new Date(),
-      changeFrequency: "monthly" as const,
-      priority: 0.8,
+      changeFrequency: "monthly",
+      priority: 0.7,
     },
     {
-      url: `${baseUrl}/#education`,
+      url: `${baseUrl}/contact`,
       lastModified: new Date(),
-      changeFrequency: "monthly" as const,
-      priority: 0.8,
+      changeFrequency: "yearly",
+      priority: 0.6,
     },
     {
-      url: `${baseUrl}/#contact`,
+      url: `${baseUrl}/blog`,
       lastModified: new Date(),
-      changeFrequency: "monthly" as const,
+      changeFrequency: "weekly",
       priority: 0.8,
     },
   ];
-
-  // Add project routes
-  const projectRoutes = projects.map((project) => ({
-    url: `${baseUrl}/projects/${project.id}`,
-    lastModified: project.completedAt
-      ? new Date(project.completedAt)
-      : new Date(),
-    changeFrequency: "monthly" as const,
-    priority: 0.7,
-  }));
-
-  return [...routes, ...projectRoutes];
 } 
