@@ -40,10 +40,11 @@ const descriptionVariants = {
 };
 
 const letterVariants = {
-  hidden: { opacity: 0, y: 50 },
+  hidden: { opacity: 0, y: 50, rotateX: -90 },
   visible: (i: number) => ({
     opacity: 1,
     y: 0,
+    rotateX: 0,
     transition: {
       duration: 0.5,
       ease: [0.22, 1, 0.36, 1],
@@ -69,17 +70,31 @@ export const SectionTitle = ({
         viewport={{ once: true, margin: '-100px' }}
       >
         <motion.div variants={titleVariants} className="overflow-hidden">
-          <motion.div className="flex justify-center flex-wrap">
+          <motion.div className="flex justify-center flex-wrap relative">
             {title.split('').map((char, i) => (
               <motion.span
                 key={i}
                 custom={i}
                 variants={letterVariants}
-                className={`inline-block ${char === ' ' ? 'w-[0.3em]' : ''} text-4xl font-bold`}
+                className={`section-title-glow inline-block ${
+                  char === ' ' ? 'w-[0.3em]' : ''
+                } text-4xl font-bold`}
                 style={{
-                  textShadow: '0 0 0.2em var(--primary-color-alpha)',
+                  background: 'var(--title-gradient)',
                   WebkitBackgroundClip: 'text',
-                  color: 'var(--primary)',
+                  backgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  textShadow: `
+                    0 0 20px var(--primary-glow),
+                    0 0 40px var(--primary-glow-strong)
+                  `,
+                  transform: 'perspective(1000px)',
+                  transformStyle: 'preserve-3d',
+                }}
+                whileHover={{
+                  scale: 1.1,
+                  rotateY: 10,
+                  transition: { duration: 0.2 },
                 }}
               >
                 {char}

@@ -11,7 +11,10 @@
     --popover: 0 0% 100%;
     --popover-foreground: 240 10% 3.9%;
     --primary: 240 5.9% 10%;
-    --primary-color-alpha: rgba(var(--primary), 0.1);
+    --primary-color-alpha: rgba(25, 25, 35, 0.1);
+    --primary-glow: rgba(25, 25, 35, 0.15);
+    --primary-glow-strong: rgba(25, 25, 35, 0.25);
+    --title-gradient: linear-gradient(135deg, rgb(25, 25, 35) 0%, rgb(45, 45, 65) 100%);
     --primary-foreground: 0 0% 98%;
     --secondary: 240 4.8% 95.9%;
     --secondary-foreground: 240 5.9% 10%;
@@ -35,7 +38,10 @@
     --popover: 240 10% 3.9%;
     --popover-foreground: 0 0% 98%;
     --primary: 0 0% 98%;
-    --primary-color-alpha: rgba(var(--primary), 0.1);
+    --primary-color-alpha: rgba(248, 248, 252, 0.1);
+    --primary-glow: rgba(248, 248, 252, 0.15);
+    --primary-glow-strong: rgba(248, 248, 252, 0.25);
+    --title-gradient: linear-gradient(135deg, rgb(248, 248, 252) 0%, rgb(228, 228, 232) 100%);
     --primary-foreground: 240 5.9% 10%;
     --secondary: 240 3.7% 15.9%;
     --secondary-foreground: 0 0% 98%;
@@ -61,4 +67,32 @@
   html {
     @apply scroll-smooth;
   }
+}
+
+.section-title-glow {
+  position: relative;
+}
+
+.section-title-glow::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  background: var(--title-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  filter: blur(8px);
+  opacity: 0.5;
+  z-index: -1;
+}
+
+.section-title-glow::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  background: var(--title-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  filter: blur(16px);
+  opacity: 0.3;
+  z-index: -2;
 }
