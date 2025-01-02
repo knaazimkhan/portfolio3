@@ -15,13 +15,18 @@ const inter = Inter({
   variable: "--font-inter",
 });
 
+const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://your-domain.com';
+const name = "Your Name";
+const title = `${name} - Full-stack Developer Portfolio`;
+const description = "Full-stack developer specializing in React, Next.js, and modern web technologies. Creating beautiful, responsive, and user-friendly web applications.";
+
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || 'https://your-domain.com'),
+  metadataBase: new URL(baseUrl),
   title: {
-    default: "Your Name - Portfolio",
-    template: "%s | Your Name",
+    default: title,
+    template: `%s | ${name}`,
   },
-  description: "Full-stack developer specializing in React, Next.js, and modern web technologies. View my projects, skills, and experience.",
+  description,
   keywords: [
     "Full-stack Developer",
     "React Developer",
@@ -32,10 +37,19 @@ export const metadata: Metadata = {
     "JavaScript",
     "TypeScript",
     "Portfolio",
+    "Web Applications",
+    "UI/UX Design",
+    "Responsive Design",
+    "Modern Web Technologies",
   ],
-  authors: [{ name: "Your Name" }],
-  creator: "Your Name",
-  publisher: "Your Name",
+  authors: [{ name, url: baseUrl }],
+  creator: name,
+  publisher: name,
+  formatDetection: {
+    email: true,
+    address: true,
+    telephone: true,
+  },
   robots: {
     index: true,
     follow: true,
@@ -50,44 +64,72 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://your-portfolio.com",
-    title: "Your Name - Full-stack Developer Portfolio",
-    description: "Full-stack developer specializing in React, Next.js, and modern web technologies. View my projects, skills, and experience.",
-    siteName: "Your Name Portfolio",
+    url: baseUrl,
+    title,
+    description,
+    siteName: `${name} Portfolio`,
     images: [
       {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Your Name - Portfolio Preview",
+        alt: `${name} - Portfolio Preview`,
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Your Name - Full-stack Developer Portfolio",
-    description: "Full-stack developer specializing in React, Next.js, and modern web technologies. View my projects, skills, and experience.",
+    title,
+    description,
     creator: "@your_twitter",
     images: ["/og-image.png"],
   },
   icons: {
-    icon: "/favicon.ico",
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/icon.svg", type: "image/svg+xml" },
+      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+    ],
     shortcut: "/favicon-16x16.png",
-    apple: "/apple-touch-icon.png",
+    apple: [
+      { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+    ],
+    other: [
+      {
+        rel: "mask-icon",
+        url: "/safari-pinned-tab.svg",
+        color: "#000000",
+      },
+    ],
   },
   manifest: "/site.webmanifest",
   alternates: {
-    canonical: "https://your-portfolio.com",
+    canonical: baseUrl,
+    languages: {
+      'en-US': baseUrl,
+    },
   },
+  verification: {
+    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
+  },
+  category: "technology",
 };
 
 // JSON-LD structured data
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Person",
-  name: "Your Name",
-  url: "https://your-portfolio.com",
-  image: "https://your-portfolio.com/profile.jpg",
+  "@id": `${baseUrl}/#person`,
+  name,
+  url: baseUrl,
+  image: {
+    "@type": "ImageObject",
+    url: `${baseUrl}/profile.jpg`,
+    width: "400",
+    height: "400",
+    "@id": `${baseUrl}/#image`,
+  },
   sameAs: [
     "https://github.com/yourusername",
     "https://linkedin.com/in/yourusername",
@@ -98,7 +140,7 @@ const jsonLd = {
     "@type": "Organization",
     name: "Your Company",
   },
-  description: "Full-stack developer specializing in React, Next.js, and modern web technologies.",
+  description,
   knowsAbout: [
     "Web Development",
     "React",
@@ -106,7 +148,48 @@ const jsonLd = {
     "TypeScript",
     "Node.js",
     "Full-stack Development",
+    "UI/UX Design",
+    "Responsive Design",
+    "Web Performance",
+    "SEO Optimization",
   ],
+  mainEntityOfPage: {
+    "@type": "WebPage",
+    "@id": baseUrl,
+  },
+  alumniOf: [
+    {
+      "@type": "EducationalOrganization",
+      name: "Your University",
+      url: "https://university.edu",
+    },
+  ],
+  hasOccupation: {
+    "@type": "Occupation",
+    name: "Full-stack Developer",
+    occupationLocation: {
+      "@type": "City",
+      name: "Your City",
+    },
+    estimatedSalary: {
+      "@type": "MonetaryAmountDistribution",
+      currency: "USD",
+      duration: "P1Y",
+      percentile10: "80000",
+      percentile25: "90000",
+      median: "100000",
+      percentile75: "120000",
+      percentile90: "150000",
+    },
+    skills: [
+      "React",
+      "Next.js",
+      "TypeScript",
+      "Node.js",
+      "Full-stack Development",
+      "UI/UX Design",
+    ],
+  },
 };
 
 export default function RootLayout({
@@ -129,6 +212,12 @@ export default function RootLayout({
           type="font/woff2"
           crossOrigin="anonymous"
         />
+        {/* Preconnect to external domains */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        {/* Add meta theme color */}
+        <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" />
+        <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
       </head>
       <body className={cn(inter.className, "min-h-screen bg-background antialiased")}>
         <ThemeProvider
