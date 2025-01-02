@@ -61,11 +61,36 @@
   * {
     @apply border-border;
   }
-  body {
-    @apply bg-background text-foreground;
-  }
+  
   html {
     @apply scroll-smooth;
+  }
+
+  html,
+  body,
+  * {
+    transition: background-color 0.3s ease-in-out,
+                border-color 0.3s ease-in-out,
+                color 0.2s ease-in-out,
+                fill 0.2s ease-in-out,
+                stroke 0.2s ease-in-out,
+                opacity 0.2s ease-in-out,
+                box-shadow 0.2s ease-in-out;
+  }
+
+  /* Exclude transitions from elements that shouldn't animate */
+  .no-transition,
+  .no-transition * {
+    transition: none !important;
+  }
+
+  /* Smooth transition for gradient backgrounds */
+  [style*="background"] {
+    transition: background 0.3s ease-in-out;
+  }
+
+  body {
+    @apply bg-background text-foreground;
   }
 }
 
