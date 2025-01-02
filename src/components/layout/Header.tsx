@@ -1,19 +1,19 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
-import { useTheme } from "next-themes";
+import type { Route } from "next";
 import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { Link } from "@/components/ui/link";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
 
 const navigation = [
-  { name: "Home", href: "/" },
-  { name: "Projects", href: "#projects" },
-  { name: "Skills", href: "#skills" },
-  { name: "Education", href: "#education" },
-  { name: "Contact", href: "#contact" },
-];
+  { name: "Home", href: "/" as Route },
+  { name: "Projects", href: "/projects" as Route },
+  { name: "Skills", href: "/skills" as Route },
+  { name: "Education", href: "/education" as Route },
+  { name: "Contact", href: "/contact" as Route },
+] as const;
 
 export const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -21,12 +21,12 @@ export const Header = () => {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-sm">
       {/* Skip Link */}
-      <a
+      <Link
         href="#main-content"
         className="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:p-4 focus:bg-background focus:text-foreground"
       >
         Skip to main content
-      </a>
+      </Link>
 
       <nav 
         className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" 
@@ -38,6 +38,7 @@ export const Header = () => {
             href="/" 
             className="-m-1.5 p-1.5 text-2xl font-bold"
             aria-label="Go to homepage"
+            exact
           >
             Portfolio
           </Link>
@@ -60,7 +61,8 @@ export const Header = () => {
             <Link
               key={item.name}
               href={item.href}
-              className="text-sm font-semibold leading-6 hover:text-primary transition-colors"
+              className="text-sm font-semibold leading-6 text-muted-foreground hover:text-foreground transition-colors"
+              activeClassName="text-foreground"
               aria-label={`Go to ${item.name.toLowerCase()} section`}
             >
               {item.name}
@@ -91,6 +93,7 @@ export const Header = () => {
               href="/" 
               className="-m-1.5 p-1.5 text-2xl font-bold"
               aria-label="Go to homepage"
+              exact
             >
               Portfolio
             </Link>
@@ -111,7 +114,8 @@ export const Header = () => {
                   <Link
                     key={item.name}
                     href={item.href}
-                    className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 hover:bg-muted transition-colors"
+                    className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
+                    activeClassName="text-foreground bg-muted"
                     onClick={() => setMobileMenuOpen(false)}
                     aria-label={`Go to ${item.name.toLowerCase()} section`}
                   >
