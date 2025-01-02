@@ -1,47 +1,24 @@
 "use client";
 
+import { Loader2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-interface LoadingProps {
-  className?: string;
-  size?: "sm" | "md" | "lg";
+interface LoadingProps extends React.HTMLAttributes<HTMLDivElement> {
+  size?: number;
+  text?: string;
 }
 
-export const Loading = ({ className, size = "md" }: LoadingProps) => {
-  const sizeClasses = {
-    sm: "w-4 h-4 border-2",
-    md: "w-8 h-8 border-3",
-    lg: "w-12 h-12 border-4",
-  };
-
+export function Loading({ size = 24, text, className, ...props }: LoadingProps) {
   return (
     <div
       className={cn(
-        "animate-spin rounded-full border-primary border-t-transparent",
-        sizeClasses[size],
+        "flex min-h-[200px] w-full flex-col items-center justify-center gap-2",
         className
       )}
-      role="status"
-      aria-label="Loading"
+      {...props}
     >
-      <span className="sr-only">Loading...</span>
+      <Loader2 className="h-[2em] w-[2em] animate-spin text-primary" style={{ fontSize: size }} />
+      {text && <p className="text-sm text-muted-foreground">{text}</p>}
     </div>
   );
-};
-
-interface LoadingPageProps {
-  className?: string;
-}
-
-export const LoadingPage = ({ className }: LoadingPageProps) => {
-  return (
-    <div
-      className={cn(
-        "flex min-h-[400px] w-full items-center justify-center",
-        className
-      )}
-    >
-      <Loading size="lg" />
-    </div>
-  );
-}; 
+} 
