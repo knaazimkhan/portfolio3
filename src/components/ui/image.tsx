@@ -36,7 +36,7 @@ export const Image = ({
     >
       {isLoading && (
         <div className="absolute inset-0 flex items-center justify-center bg-muted">
-          <Loading size="sm" />
+          <Loading size={16} />
         </div>
       )}
       <NextImage
