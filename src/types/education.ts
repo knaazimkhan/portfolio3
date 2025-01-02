@@ -1,14 +1,11 @@
-export type Education = {
+export interface Education {
   id: string;
-  school: string;
+  institution: string;
+  logo: string;
   degree: string;
   field: string;
+  date: string;
   location: string;
-  startDate: string;
-  endDate: string | "Present";
-  grade?: string;
-  activities?: string[];
-  description?: string[];
-  achievements?: string[];
-  logo?: string;
-}; 
+  description: string;
+  achievements: string[];
+} 
