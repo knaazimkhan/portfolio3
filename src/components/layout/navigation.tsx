@@ -2,17 +2,18 @@
 
 import * as React from "react";
 import { motion } from "framer-motion";
+import type { Route } from "next";
 import { Link } from "@/components/ui/link";
 import { cn } from "@/lib/utils";
 
 const navItems = [
-  { href: "/", label: "Home" },
-  { href: "/projects", label: "Projects" },
-  { href: "/skills", label: "Skills" },
-  { href: "/education", label: "Education" },
-  { href: "/blog", label: "Blog" },
-  { href: "/contact", label: "Contact" },
-];
+  { href: "/" as Route, label: "Home" },
+  { href: "/projects" as Route, label: "Projects" },
+  { href: "/skills" as Route, label: "Skills" },
+  { href: "/education" as Route, label: "Education" },
+  { href: "/blog" as Route, label: "Blog" },
+  { href: "/contact" as Route, label: "Contact" },
+] as const;
 
 interface NavigationProps {
   className?: string;

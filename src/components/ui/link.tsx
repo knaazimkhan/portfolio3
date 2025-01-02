@@ -6,18 +6,17 @@ import type { Route } from "next";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 
-interface LinkProps<T extends string> {
-  href: Route<T>;
-  className?: string;
+type RouteType = Route<string> | URL;
+
+interface LinkProps extends Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, "href"> {
+  href: RouteType;
   activeClassName?: string;
   inactiveClassName?: string;
   exact?: boolean;
   prefetch?: boolean;
-  children?: React.ReactNode;
-  onClick?: React.MouseEventHandler<HTMLAnchorElement>;
 }
 
-export function Link<T extends string>({
+export function Link({
   href,
   className,
   activeClassName,
@@ -27,9 +26,10 @@ export function Link<T extends string>({
   children,
   onClick,
   ...props
-}: LinkProps<T>) {
+}: LinkProps) {
   const pathname = usePathname();
-  const isActive = exact ? pathname === href : pathname.startsWith(href);
+  const hrefString = href.toString();
+  const isActive = exact ? pathname === hrefString : pathname.startsWith(hrefString);
 
   return (
     <NextLink
