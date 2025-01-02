@@ -39,6 +39,19 @@ const descriptionVariants = {
   },
 };
 
+const letterVariants = {
+  hidden: { opacity: 0, y: 50 },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.5,
+      ease: [0.22, 1, 0.36, 1],
+      delay: i * 0.05,
+    },
+  }),
+};
+
 export const SectionTitle = ({
   title,
   description,
@@ -55,11 +68,28 @@ export const SectionTitle = ({
         whileInView="visible"
         viewport={{ once: true, margin: '-100px' }}
       >
-        <motion.div variants={titleVariants}>
+        <motion.div variants={titleVariants} className="overflow-hidden">
+          <motion.div className="flex justify-center flex-wrap">
+            {title.split('').map((char, i) => (
+              <motion.span
+                key={i}
+                custom={i}
+                variants={letterVariants}
+                className={`inline-block ${char === ' ' ? 'w-[0.3em]' : ''} text-4xl font-bold`}
+                style={{
+                  textShadow: '0 0 0.2em var(--primary-color-alpha)',
+                  WebkitBackgroundClip: 'text',
+                  color: 'var(--primary)',
+                }}
+              >
+                {char}
+              </motion.span>
+            ))}
+          </motion.div>
           <AnimatedText
             text={title}
             animation={titleAnimation}
-            className="text-3xl font-bold mb-4"
+            className="sr-only"
           />
         </motion.div>
 
@@ -67,7 +97,7 @@ export const SectionTitle = ({
           <ParallaxScroll offset={parallaxOffset}>
             <motion.div variants={descriptionVariants}>
               <ScrollAnimation animation={descriptionAnimation}>
-                <p className="text-muted-foreground max-w-2xl mx-auto">
+                <p className="text-muted-foreground max-w-2xl mx-auto mt-4">
                   {description}
                 </p>
               </ScrollAnimation>
