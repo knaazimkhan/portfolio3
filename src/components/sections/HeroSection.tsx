@@ -9,6 +9,7 @@ import { HoverCard } from "@/components/ui/hover-card";
 import { AnimatedText } from "@/components/ui/animated-text";
 import { ParallaxScroll } from "@/components/ui/parallax-scroll";
 import { GradientBackground } from "@/components/ui/gradient-background";
+import { HeroSectionSkeleton } from "@/components/ui/hero-section-skeleton";
 
 const roles = [
   "Frontend Developer",
@@ -37,6 +38,12 @@ export const HeroSection = () => {
   const [displayText, setDisplayText] = useState("");
   const [roleIndex, setRoleIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setIsLoading(false), 1000);
+    return () => clearTimeout(timer);
+  }, []);
 
   useEffect(() => {
     const role = roles[roleIndex];
@@ -59,6 +66,15 @@ export const HeroSection = () => {
 
     return () => clearTimeout(timeout);
   }, [displayText, roleIndex, isDeleting]);
+
+  if (isLoading) {
+    return (
+      <GradientBackground className="min-h-screen flex items-center justify-center py-20 px-4">
+        <div className="absolute inset-0 -z-20 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]" />
+        <HeroSectionSkeleton />
+      </GradientBackground>
+    );
+  }
 
   return (
     <GradientBackground className="min-h-screen flex items-center justify-center py-20 px-4">
