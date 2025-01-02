@@ -1,25 +1,19 @@
 import { ImageResponse } from '@vercel/og';
 import { NextRequest } from 'next/server';
+import { readFileSync } from 'fs';
+import { join } from 'path';
 
 export const runtime = 'edge';
 
-const interRegular = fetch(
-  new URL('../../../assets/fonts/Inter-Regular.ttf', import.meta.url)
-).then((res) => res.arrayBuffer());
-
-const interBold = fetch(
-  new URL('../../../assets/fonts/Inter-Bold.ttf', import.meta.url)
-).then((res) => res.arrayBuffer());
+// Load fonts
+const interRegular = readFileSync(join(process.cwd(), 'src/app/api/og/fonts/Inter-Regular.ttf'));
+const interBold = readFileSync(join(process.cwd(), 'src/app/api/og/fonts/Inter-Bold.ttf'));
 
 export async function GET(req: NextRequest) {
   try {
     const { searchParams } = new URL(req.url);
     const title = searchParams.get('title') || 'Your Name';
     const description = searchParams.get('description') || 'Full-stack Developer';
-    const [interRegularData, interBoldData] = await Promise.all([
-      interRegular,
-      interBold,
-    ]);
 
     return new ImageResponse(
       (
@@ -140,13 +134,13 @@ export async function GET(req: NextRequest) {
         fonts: [
           {
             name: 'Inter',
-            data: interRegularData,
+            data: interRegular,
             weight: 400,
             style: 'normal',
           },
           {
             name: 'Inter',
-            data: interBoldData,
+            data: interBold,
             weight: 700,
             style: 'normal',
           },
