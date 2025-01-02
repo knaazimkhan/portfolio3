@@ -3,6 +3,7 @@ import { Suspense } from "react";
 import { Inter } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Loading } from "@/components/ui/loading";
+import { PageTransition } from "@/components/ui/page-transition";
 import { cn } from "@/lib/utils";
 import "./globals.css";
 
@@ -137,7 +138,9 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <Suspense fallback={<Loading text="Loading..." />}>
-            {children}
+            <PageTransition>
+              {children}
+            </PageTransition>
           </Suspense>
         </ThemeProvider>
       </body>
