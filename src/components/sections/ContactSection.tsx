@@ -20,6 +20,7 @@ import { HoverCard } from "@/components/ui/hover-card";
 import { AnimatedText } from "@/components/ui/animated-text";
 import { ParallaxScroll } from "@/components/ui/parallax-scroll";
 import { GradientBackground } from "@/components/ui/gradient-background";
+import { ContactFormSkeleton } from "@/components/ui/contact-form-skeleton";
 import { initEmailJS, validateEmailConfig, EMAIL_CONFIG, type EmailData } from "@/lib/emailjs";
 import { RateLimit } from "@/lib/rate-limit";
 
@@ -102,8 +103,14 @@ export const ContactSection = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<"success" | "error" | null>(null);
   const [errorMessage, setErrorMessage] = useState<string>("");
+  const [isLoading, setIsLoading] = useState(true);
   const recaptchaRef = useRef<ReCAPTCHA>(null);
   const rateLimit = useRef(new RateLimit(3, 60000)); // 3 attempts per minute
+
+  useEffect(() => {
+    const timer = setTimeout(() => setIsLoading(false), 1000);
+    return () => clearTimeout(timer);
+  }, []);
 
   const {
     register,
@@ -174,248 +181,196 @@ export const ContactSection = () => {
     }
   }, []);
 
+  if (isLoading) {
+    return (
+      <section id="contact" className="py-20 px-4">
+        <GradientBackground variant="muted">
+          <div className="container mx-auto max-w-6xl">
+            <ContactFormSkeleton />
+          </div>
+        </GradientBackground>
+      </section>
+    );
+  }
+
   return (
     <section id="contact" className="py-20 px-4">
-      <GradientBackground variant="vibrant">
+      <GradientBackground variant="muted">
         <div className="container mx-auto max-w-6xl">
-          <ScrollAnimation animation="fade">
-            <AnimatedText
-              text="Get in Touch"
-              animation="bounce"
-              className="text-3xl font-bold text-center mb-4"
-            />
-            <ParallaxScroll offset={20}>
-              <p className="text-muted-foreground text-center mb-12 max-w-2xl mx-auto">
-                I'm always open to new opportunities and collaborations. Feel free to reach
-                out if you have any questions or just want to say hi!
-              </p>
-            </ParallaxScroll>
+          <ScrollAnimation animation="slide" className="text-center mb-12">
+            <h2 className="text-3xl font-bold mb-4">Get in Touch</h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              Have a question or want to work together? Feel free to reach out!
+            </p>
           </ScrollAnimation>
 
-          <motion.div
-            className="grid gap-12 lg:grid-cols-2"
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
-          >
-            <motion.div variants={itemVariants}>
-              <div className="space-y-8">
-                <ParallaxScroll offset={30}>
-                  <HoverCard>
-                    <motion.div whileHover={{ scale: 1.02 }} className="flex items-center gap-4 p-4 bg-background/50 rounded-lg border backdrop-blur-sm">
-                      <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
-                        <FaEnvelope className="w-6 h-6 text-primary" />
-                      </div>
-                      <div>
-                        <h3 className="font-medium">Email</h3>
-                        <a
-                          href="mailto:your.email@example.com"
-                          className="text-muted-foreground hover:text-primary transition-colors"
-                        >
-                          your.email@example.com
-                        </a>
-                      </div>
-                    </motion.div>
-                  </HoverCard>
-                </ParallaxScroll>
+          <div className="grid gap-12 lg:grid-cols-2">
+            {/* Contact Form */}
+            <motion.div
+              variants={containerVariants}
+              initial="hidden"
+              animate="visible"
+              className="space-y-8"
+            >
+              <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+                {/* Honeypot field */}
+                <div className="hidden">
+                  <input {...register("honeypot")} />
+                </div>
 
-                <ParallaxScroll offset={40}>
-                  <HoverCard>
-                    <motion.div whileHover={{ scale: 1.02 }} className="flex items-center gap-4 p-4 bg-background/50 rounded-lg border backdrop-blur-sm">
-                      <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
-                        <FaMapMarkerAlt className="w-6 h-6 text-primary" />
-                      </div>
-                      <div>
-                        <h3 className="font-medium">Location</h3>
-                        <p className="text-muted-foreground">Your Location, Country</p>
-                      </div>
-                    </motion.div>
-                  </HoverCard>
-                </ParallaxScroll>
+                {/* Name field */}
+                <motion.div variants={itemVariants} className="space-y-2">
+                  <label htmlFor="name" className="text-sm font-medium">
+                    Name
+                  </label>
+                  <input
+                    id="name"
+                    type="text"
+                    className={`w-full px-4 py-2 rounded-md border bg-background ${
+                      errors.name ? "border-destructive" : "border-input"
+                    }`}
+                    {...register("name")}
+                    aria-invalid={errors.name ? "true" : "false"}
+                  />
+                  {errors.name && (
+                    <p className="text-sm text-destructive">{errors.name.message}</p>
+                  )}
+                </motion.div>
 
-                <ParallaxScroll offset={50}>
-                  <div className="p-4 bg-background/50 rounded-lg border backdrop-blur-sm">
-                    <h3 className="font-medium mb-4">Connect with me</h3>
-                    <motion.div 
-                      className="flex gap-4 flex-wrap"
-                      variants={containerVariants}
-                    >
-                      {socialLinks.map((social, index) => (
-                        <motion.a
-                          key={social.name}
-                          href={social.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className={`p-3 rounded-full bg-background border transition-colors ${social.color}`}
-                          variants={itemVariants}
-                          whileHover={{ scale: 1.1, rotate: 5 }}
-                          whileTap={{ scale: 0.95 }}
-                          custom={index}
-                          title={social.name}
-                        >
-                          {social.icon}
-                        </motion.a>
-                      ))}
-                    </motion.div>
-                  </div>
-                </ParallaxScroll>
-              </div>
+                {/* Email field */}
+                <motion.div variants={itemVariants} className="space-y-2">
+                  <label htmlFor="email" className="text-sm font-medium">
+                    Email
+                  </label>
+                  <input
+                    id="email"
+                    type="email"
+                    className={`w-full px-4 py-2 rounded-md border bg-background ${
+                      errors.email ? "border-destructive" : "border-input"
+                    }`}
+                    {...register("email")}
+                    aria-invalid={errors.email ? "true" : "false"}
+                  />
+                  {errors.email && (
+                    <p className="text-sm text-destructive">{errors.email.message}</p>
+                  )}
+                </motion.div>
+
+                {/* Message field */}
+                <motion.div variants={itemVariants} className="space-y-2">
+                  <label htmlFor="message" className="text-sm font-medium">
+                    Message
+                  </label>
+                  <textarea
+                    id="message"
+                    rows={5}
+                    className={`w-full px-4 py-2 rounded-md border bg-background ${
+                      errors.message ? "border-destructive" : "border-input"
+                    }`}
+                    {...register("message")}
+                    aria-invalid={errors.message ? "true" : "false"}
+                  />
+                  {errors.message && (
+                    <p className="text-sm text-destructive">{errors.message.message}</p>
+                  )}
+                </motion.div>
+
+                {/* reCAPTCHA */}
+                <motion.div variants={itemVariants}>
+                  <ReCAPTCHA
+                    ref={recaptchaRef}
+                    size="invisible"
+                    sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || ""}
+                  />
+                </motion.div>
+
+                {/* Error message */}
+                {errorMessage && (
+                  <motion.p
+                    variants={itemVariants}
+                    className="text-sm text-destructive"
+                  >
+                    {errorMessage}
+                  </motion.p>
+                )}
+
+                {/* Submit button */}
+                <motion.div variants={itemVariants}>
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="w-full md:w-auto px-8 py-3 rounded-md bg-primary text-primary-foreground font-medium hover:bg-primary/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    {isSubmitting ? "Sending..." : "Send Message"}
+                  </button>
+                </motion.div>
+              </form>
+
+              {/* Success message */}
+              {submitStatus === "success" && (
+                <motion.div
+                  variants={successVariants}
+                  initial="hidden"
+                  animate="visible"
+                  className="p-4 rounded-md bg-green-500/10 text-green-500 text-center"
+                >
+                  Message sent successfully! I'll get back to you soon.
+                </motion.div>
+              )}
             </motion.div>
 
-            <motion.div variants={itemVariants}>
-              <ScrollAnimation animation="slide">
-                <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-                  <div className="space-y-4 bg-background/50 p-8 rounded-lg border backdrop-blur-sm">
-                    {/* Honeypot field - hidden from real users */}
-                    <div className="absolute opacity-0 -z-10 select-none pointer-events-none">
-                      <label htmlFor="honeypot" aria-hidden="true">
-                        Leave this field empty
-                      </label>
-                      <input
-                        type="text"
-                        id="honeypot"
-                        tabIndex={-1}
-                        autoComplete="off"
-                        {...register("honeypot")}
-                      />
-                    </div>
+            {/* Contact Info */}
+            <motion.div
+              variants={containerVariants}
+              initial="hidden"
+              animate="visible"
+              className="space-y-8 lg:pl-12"
+            >
+              {/* Location */}
+              <motion.div variants={itemVariants} className="text-center lg:text-left">
+                <div className="flex items-center justify-center lg:justify-start gap-2 text-muted-foreground">
+                  <FaMapMarkerAlt className="w-4 h-4" />
+                  <span>San Francisco, CA (PST)</span>
+                </div>
+              </motion.div>
 
-                    <div>
-                      <label htmlFor="name" className="block text-sm font-medium mb-2">
-                        Name
-                      </label>
-                      <motion.input
-                        whileFocus={{ scale: 1.01 }}
-                        type="text"
-                        id="name"
-                        autoComplete="name"
-                        aria-describedby="name-error"
-                        className="w-full px-4 py-2 rounded-md border bg-background focus:outline-none focus:ring-2 focus:ring-primary"
-                        {...register("name")}
-                      />
-                      {errors.name && (
-                        <motion.p
-                          id="name-error"
-                          role="alert"
-                          initial={{ opacity: 0, y: -10 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          className="mt-1 text-sm text-destructive"
-                        >
-                          {errors.name.message}
-                        </motion.p>
-                      )}
-                    </div>
+              {/* Email */}
+              <motion.div variants={itemVariants} className="text-center lg:text-left">
+                <div className="flex items-center justify-center lg:justify-start gap-2 text-muted-foreground">
+                  <FaEnvelope className="w-4 h-4" />
+                  <a
+                    href="mailto:your.email@example.com"
+                    className="hover:text-primary transition-colors"
+                  >
+                    your.email@example.com
+                  </a>
+                </div>
+              </motion.div>
 
-                    <div>
-                      <label htmlFor="email" className="block text-sm font-medium mb-2">
-                        Email
-                      </label>
-                      <motion.input
-                        whileFocus={{ scale: 1.01 }}
-                        type="email"
-                        id="email"
-                        autoComplete="email"
-                        aria-describedby="email-error"
-                        className="w-full px-4 py-2 rounded-md border bg-background focus:outline-none focus:ring-2 focus:ring-primary"
-                        {...register("email")}
-                      />
-                      {errors.email && (
-                        <motion.p
-                          id="email-error"
-                          role="alert"
-                          initial={{ opacity: 0, y: -10 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          className="mt-1 text-sm text-destructive"
-                        >
-                          {errors.email.message}
-                        </motion.p>
-                      )}
-                    </div>
-
-                    <div>
-                      <label htmlFor="message" className="block text-sm font-medium mb-2">
-                        Message
-                      </label>
-                      <motion.textarea
-                        whileFocus={{ scale: 1.01 }}
-                        id="message"
-                        rows={4}
-                        aria-describedby="message-error"
-                        className="w-full px-4 py-2 rounded-md border bg-background focus:outline-none focus:ring-2 focus:ring-primary resize-none"
-                        {...register("message")}
-                      />
-                      <div className="flex justify-between items-center mt-1">
-                        <motion.p
-                          initial={{ opacity: 0 }}
-                          animate={{ opacity: 1 }}
-                          className="text-xs text-muted-foreground"
-                        >
-                          {`${watch("message")?.length || 0}/1000 characters`}
-                        </motion.p>
-                        {errors.message && (
-                          <motion.p
-                            id="message-error"
-                            role="alert"
-                            initial={{ opacity: 0, y: -10 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            className="text-sm text-destructive"
-                          >
-                            {errors.message.message}
-                          </motion.p>
-                        )}
-                      </div>
-                    </div>
-
-                    <div className="hidden">
-                      <ReCAPTCHA
-                        ref={recaptchaRef}
-                        size="invisible"
-                        sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!}
-                      />
-                    </div>
-
-                    <HoverCard>
-                      <motion.button
-                        type="submit"
-                        disabled={isSubmitting}
-                        whileHover={{ scale: 1.02 }}
-                        className="w-full inline-flex items-center justify-center rounded-md bg-primary px-6 py-3 text-sm font-medium text-primary-foreground ring-offset-background transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
+              {/* Social Links */}
+              <motion.div variants={itemVariants}>
+                <h3 className="text-lg font-semibold text-center lg:text-left mb-4">
+                  Connect with me
+                </h3>
+                <div className="flex justify-center lg:justify-start gap-4">
+                  {socialLinks.map((link) => (
+                    <HoverCard key={link.name}>
+                      <motion.a
+                        href={link.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={`text-muted-foreground transition-colors ${link.color}`}
+                        title={link.name}
+                        whileHover={{ scale: 1.1 }}
                       >
-                        {isSubmitting ? (
-                          <motion.div
-                            animate={{ rotate: 360 }}
-                            transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-                            className="w-5 h-5 border-2 border-primary-foreground border-t-transparent rounded-full"
-                          />
-                        ) : (
-                          "Send Message"
-                        )}
-                      </motion.button>
+                        {link.icon}
+                      </motion.a>
                     </HoverCard>
-
-                    {(submitStatus || errorMessage) && (
-                      <motion.div
-                        variants={successVariants}
-                        initial="hidden"
-                        animate="visible"
-                        role="alert"
-                        aria-live="polite"
-                        className={`text-sm ${
-                          submitStatus === "success"
-                            ? "text-green-600 dark:text-green-400"
-                            : "text-destructive"
-                        }`}
-                      >
-                        {submitStatus === "success"
-                          ? "Message sent successfully!"
-                          : errorMessage || "Failed to send message. Please try again."}
-                      </motion.div>
-                    )}
-                  </div>
-                </form>
-              </ScrollAnimation>
+                  ))}
+                </div>
+              </motion.div>
             </motion.div>
-          </motion.div>
+          </div>
         </div>
       </GradientBackground>
     </section>
