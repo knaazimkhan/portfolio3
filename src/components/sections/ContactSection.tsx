@@ -23,6 +23,7 @@ import { GradientBackground } from "@/components/ui/gradient-background";
 import { ContactFormSkeleton } from "@/components/ui/contact-form-skeleton";
 import { initEmailJS, validateEmailConfig, EMAIL_CONFIG, type EmailData } from "@/lib/emailjs";
 import { RateLimit } from "@/lib/rate-limit";
+import { SectionTitle } from '@/components/ui/section-title';
 
 const contactFormSchema = z.object({
   name: z.string()
@@ -197,19 +198,13 @@ export const ContactSection = () => {
     <section id="contact" className="py-20 px-4">
       <GradientBackground variant="vibrant">
         <div className="container mx-auto max-w-6xl">
-          <ScrollAnimation animation="fade">
-            <AnimatedText
-              text="Get in Touch"
-              animation="bounce"
-              className="text-3xl font-bold text-center mb-4"
-            />
-            <ParallaxScroll offset={20}>
-              <p className="text-muted-foreground text-center mb-12 max-w-2xl mx-auto">
-                I'm always open to new opportunities and collaborations. Feel free to reach
-                out if you have any questions or just want to say hi!
-              </p>
-            </ParallaxScroll>
-          </ScrollAnimation>
+          <SectionTitle
+            title="Get in Touch"
+            description="I'm always open to new opportunities and collaborations. Feel free to reach out if you have any questions or just want to say hi!"
+            titleAnimation="slide"
+            descriptionAnimation="scale"
+            parallaxOffset={40}
+          />
 
           <motion.div
             className="grid gap-12 lg:grid-cols-2"

@@ -9,6 +9,7 @@ import { AnimatedText } from "@/components/ui/animated-text";
 import { ParallaxScroll } from "@/components/ui/parallax-scroll";
 import { GradientBackground } from "@/components/ui/gradient-background";
 import { testimonials } from "@/data/testimonials";
+import { SectionTitle } from '@/components/ui/section-title';
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -78,18 +79,13 @@ export const TestimonialsSection = () => {
     <section id="testimonials" className="py-20 px-4">
       <GradientBackground variant="subtle">
         <div className="container mx-auto max-w-6xl">
-          <ScrollAnimation animation="fade">
-            <AnimatedText
-              text="Client Testimonials"
-              animation="bounce"
-              className="text-3xl font-bold text-center mb-4"
-            />
-            <ParallaxScroll offset={20}>
-              <p className="text-muted-foreground text-center mb-12 max-w-2xl mx-auto">
-                What people say about working with me
-              </p>
-            </ParallaxScroll>
-          </ScrollAnimation>
+          <SectionTitle
+            title="Client Testimonials"
+            description="What people say about working with me"
+            titleAnimation="wave"
+            descriptionAnimation="slide"
+            parallaxOffset={30}
+          />
 
           <motion.div
             className="relative h-[500px] md:h-[400px]"

@@ -12,6 +12,7 @@ import { Badge } from "@/components/ui/badge";
 import { HoverCard } from "@/components/ui/hover-card";
 import { blogPosts } from "@/data/blog";
 import { BlogPost, BlogCategory } from "@/types/blog";
+import { SectionTitle } from '@/components/ui/section-title';
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -93,18 +94,13 @@ export const BlogSection = () => {
   return (
     <section id="blog" className="py-20 px-4">
       <div className="container mx-auto max-w-6xl">
-        <ScrollAnimation animation="fade">
-          <AnimatedText
-            text="Latest Articles"
-            animation="bounce"
-            className="text-3xl font-bold text-center mb-4"
-          />
-          <ParallaxScroll offset={20}>
-            <p className="text-muted-foreground text-center mb-12 max-w-2xl mx-auto">
-              Thoughts, tutorials, and insights about web development
-            </p>
-          </ParallaxScroll>
-        </ScrollAnimation>
+        <SectionTitle
+          title="Latest Articles"
+          description="Thoughts, tutorials, and insights about web development"
+          titleAnimation="bounce"
+          descriptionAnimation="fade"
+          parallaxOffset={20}
+        />
 
         {/* Search Bar */}
         <div className="relative max-w-md mx-auto mb-8">
