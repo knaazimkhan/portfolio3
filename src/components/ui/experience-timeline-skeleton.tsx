@@ -1,9 +1,12 @@
 import { Skeleton } from "@/components/ui/skeleton";
-import { motion } from "framer-motion";
 
-export const ExperienceTimelineSkeleton = ({ index }: { index: number }) => {
+type ExperienceTimelineSkeletonProps = {
+  index?: number;
+};
+
+export const ExperienceTimelineSkeleton = ({ index = 0 }: ExperienceTimelineSkeletonProps) => {
   return (
-    <motion.div
+    <div
       className={`relative flex flex-col md:flex-row gap-8 md:gap-16 mb-12 ${
         index % 2 === 0 ? "md:flex-row-reverse" : ""
       }`}
@@ -52,6 +55,6 @@ export const ExperienceTimelineSkeleton = ({ index }: { index: number }) => {
 
       {/* Empty space for timeline alignment */}
       <div className="flex-1" />
-    </motion.div>
+    </div>
   );
 }; 
