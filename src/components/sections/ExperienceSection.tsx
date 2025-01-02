@@ -75,16 +75,42 @@ const ExperienceCard = ({ item, index, isEven }: { item: any; index: number; isE
           </div>
         </HoverCardTrigger>
 
-        <HoverCardContent side={isEven ? "left" : "right"} className="w-80">
-          <div className="space-y-4">
+        <HoverCardContent 
+          side={isEven ? "left" : "right"} 
+          className="w-96 p-6 backdrop-blur-sm border border-primary/10 shadow-lg"
+          sideOffset={20}
+        >
+          <div className="space-y-6">
+            {/* Company and Role Summary */}
+            <div className="flex items-center gap-3 pb-4 border-b border-primary/10">
+              <div className="relative w-10 h-10">
+                <Image
+                  src={item.logo}
+                  alt={`${item.company} logo`}
+                  fill
+                  className="object-contain rounded-lg"
+                />
+              </div>
+              <div>
+                <h4 className="font-semibold">{item.role}</h4>
+                <p className="text-sm text-muted-foreground">{item.company}</p>
+              </div>
+            </div>
+
             {/* Responsibilities */}
-            <div className="space-y-2">
-              <h4 className="font-medium">Key Responsibilities</h4>
+            <div className="space-y-3">
+              <h4 className="text-sm font-semibold uppercase tracking-wider text-primary">
+                Key Responsibilities
+              </h4>
               <ScrollAnimation animation="fade" delay={0.1}>
-                <ul className="ml-4 space-y-1">
+                <ul className="space-y-2">
                   {item.responsibilities?.map((resp: string, i: number) => (
-                    <li key={i} className="text-sm text-muted-foreground">
-                      • {resp}
+                    <li 
+                      key={i} 
+                      className="text-sm text-muted-foreground flex items-start gap-2 group hover:text-foreground transition-colors"
+                    >
+                      <span className="text-primary mt-1">•</span>
+                      <span className="flex-1">{resp}</span>
                     </li>
                   ))}
                 </ul>
@@ -93,13 +119,19 @@ const ExperienceCard = ({ item, index, isEven }: { item: any; index: number; isE
 
             {/* Achievements */}
             {item.achievements?.length > 0 && (
-              <div className="space-y-2">
-                <h4 className="font-medium">Key Achievements</h4>
+              <div className="space-y-3">
+                <h4 className="text-sm font-semibold uppercase tracking-wider text-primary">
+                  Key Achievements
+                </h4>
                 <ScrollAnimation animation="fade" delay={0.2}>
-                  <ul className="ml-4 space-y-1">
+                  <ul className="space-y-2">
                     {item.achievements.map((achievement: string, i: number) => (
-                      <li key={i} className="text-sm text-muted-foreground">
-                        • {achievement}
+                      <li 
+                        key={i} 
+                        className="text-sm text-muted-foreground flex items-start gap-2 group hover:text-foreground transition-colors"
+                      >
+                        <span className="text-primary mt-1">•</span>
+                        <span className="flex-1">{achievement}</span>
                       </li>
                     ))}
                   </ul>
