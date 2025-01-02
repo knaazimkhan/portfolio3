@@ -20,6 +20,12 @@ const name = "Your Name";
 const title = `${name} - Full-stack Developer Portfolio`;
 const description = "Full-stack developer specializing in React, Next.js, and modern web technologies. Creating beautiful, responsive, and user-friendly web applications.";
 
+// Generate dynamic OG image URL
+const ogImage = new URL('/api/og', baseUrl);
+ogImage.searchParams.set('title', name);
+ogImage.searchParams.set('description', 'Full-stack Developer');
+const ogImageUrl = ogImage.toString();
+
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
   title: {
@@ -70,7 +76,7 @@ export const metadata: Metadata = {
     siteName: `${name} Portfolio`,
     images: [
       {
-        url: "/og-image.png",
+        url: ogImageUrl,
         width: 1200,
         height: 630,
         alt: `${name} - Portfolio Preview`,
@@ -82,7 +88,7 @@ export const metadata: Metadata = {
     title,
     description,
     creator: "@your_twitter",
-    images: ["/og-image.png"],
+    images: [ogImageUrl],
   },
   icons: {
     icon: [
