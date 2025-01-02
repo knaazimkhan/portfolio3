@@ -6,6 +6,7 @@ import remarkGfm from 'remark-gfm';
 import { readFileSync, readdirSync } from 'fs';
 import { join } from 'path';
 import matter from 'gray-matter';
+import { ReactNode } from 'react';
 
 const postsDirectory = join(process.cwd(), 'content/blog');
 
@@ -19,7 +20,7 @@ export type BlogPost = {
     name: string;
     image: string;
   };
-  content: string;
+  content: ReactNode;
   readingTime: string;
 };
 
