@@ -4,8 +4,11 @@ export interface Education {
   logo: string;
   degree: string;
   field: string;
-  date: string;
   location: string;
-  description: string;
+  startDate: string;
+  endDate: string | "Present";
+  grade?: string;
+  description: string[];
+  activities?: string[];
   achievements: string[];
 } 

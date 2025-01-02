@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { FaGithub, FaExternalLinkAlt, FaPlay } from "react-icons/fa";
 import { ScrollAnimation } from "@/components/ui/scroll-animation";
@@ -9,6 +9,7 @@ import { ParallaxScroll } from "@/components/ui/parallax-scroll";
 import { GradientBackground } from "@/components/ui/gradient-background";
 import { Badge } from "@/components/ui/badge";
 import { HoverCard } from "@/components/ui/hover-card";
+import { ProjectCardSkeleton } from "@/components/ui/project-card-skeleton";
 import { projects } from "@/data/projects";
 import Image from "next/image";
 import Link from "next/link";
@@ -107,6 +108,16 @@ const ProjectCard = ({ project }: { project: Project }) => (
 
 export const ProjectsSection = () => {
   const [selectedCategory, setSelectedCategory] = useState<typeof categories[number]>("all");
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    // Simulate loading delay
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   const filteredProjects = projects.filter(
     (project) => selectedCategory === "all" || project.category === selectedCategory
@@ -139,6 +150,8 @@ export const ProjectsSection = () => {
                     ? "bg-primary text-primary-foreground"
                     : "bg-muted hover:bg-muted/80"
                 }`}
+                aria-label={`Filter by ${category}`}
+                aria-pressed={selectedCategory === category}
               >
                 {category.charAt(0).toUpperCase() + category.slice(1)}
               </button>
@@ -151,9 +164,19 @@ export const ProjectsSection = () => {
             initial="hidden"
             animate="visible"
           >
-            {filteredProjects.map((project) => (
-              <ProjectCard key={project.id} project={project} />
-            ))}
+            {isLoading ? (
+              // Show skeletons while loading
+              Array.from({ length: 6 }).map((_, index) => (
+                <motion.div key={index} variants={itemVariants}>
+                  <ProjectCardSkeleton />
+                </motion.div>
+              ))
+            ) : (
+              // Show actual projects
+              filteredProjects.map((project) => (
+                <ProjectCard key={project.id} project={project} />
+              ))
+            )}
           </motion.div>
         </div>
       </GradientBackground>

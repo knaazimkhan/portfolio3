@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { useTheme } from "next-themes";
-import { Menu, X, Moon, Sun } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
 
@@ -17,17 +17,28 @@ const navigation = [
 
 export const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const { theme, setTheme } = useTheme();
-
-  const handleThemeToggle = () => {
-    setTheme(theme === "dark" ? "light" : "dark");
-  };
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-sm">
-      <nav className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
+      {/* Skip Link */}
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:p-4 focus:bg-background focus:text-foreground"
+      >
+        Skip to main content
+      </a>
+
+      <nav 
+        className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" 
+        aria-label="Main navigation"
+        role="navigation"
+      >
         <div className="flex lg:flex-1">
-          <Link href="/" className="-m-1.5 p-1.5 text-2xl font-bold">
+          <Link 
+            href="/" 
+            className="-m-1.5 p-1.5 text-2xl font-bold"
+            aria-label="Go to homepage"
+          >
             Portfolio
           </Link>
         </div>
@@ -36,6 +47,9 @@ export const Header = () => {
             type="button"
             className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5"
             onClick={() => setMobileMenuOpen(true)}
+            aria-expanded={mobileMenuOpen}
+            aria-controls="mobile-menu"
+            aria-label="Open main menu"
           >
             <span className="sr-only">Open main menu</span>
             <Menu className="h-6 w-6" aria-hidden="true" />
@@ -46,7 +60,8 @@ export const Header = () => {
             <Link
               key={item.name}
               href={item.href}
-              className="text-sm font-semibold leading-6 hover:text-primary"
+              className="text-sm font-semibold leading-6 hover:text-primary transition-colors"
+              aria-label={`Go to ${item.name.toLowerCase()} section`}
             >
               {item.name}
             </Link>
@@ -56,23 +71,34 @@ export const Header = () => {
           <ThemeToggle />
         </div>
       </nav>
+
+      {/* Mobile menu */}
       <div
+        id="mobile-menu"
         className={cn(
           "lg:hidden",
           mobileMenuOpen
             ? "fixed inset-0 z-50 bg-background/80 backdrop-blur-sm"
             : "hidden"
         )}
+        role="dialog"
+        aria-modal="true"
+        aria-label="Mobile menu"
       >
         <div className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-background px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-muted">
           <div className="flex items-center justify-between">
-            <Link href="/" className="-m-1.5 p-1.5 text-2xl font-bold">
+            <Link 
+              href="/" 
+              className="-m-1.5 p-1.5 text-2xl font-bold"
+              aria-label="Go to homepage"
+            >
               Portfolio
             </Link>
             <button
               type="button"
               className="-m-2.5 rounded-md p-2.5"
               onClick={() => setMobileMenuOpen(false)}
+              aria-label="Close menu"
             >
               <span className="sr-only">Close menu</span>
               <X className="h-6 w-6" aria-hidden="true" />
@@ -85,8 +111,9 @@ export const Header = () => {
                   <Link
                     key={item.name}
                     href={item.href}
-                    className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 hover:bg-muted"
+                    className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 hover:bg-muted transition-colors"
                     onClick={() => setMobileMenuOpen(false)}
+                    aria-label={`Go to ${item.name.toLowerCase()} section`}
                   >
                     {item.name}
                   </Link>
