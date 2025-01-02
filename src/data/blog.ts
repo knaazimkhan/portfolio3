@@ -1,0 +1,72 @@
+import { BlogPost } from "@/types/blog";
+
+export const blogPosts: BlogPost[] = [
+  {
+    id: "1",
+    slug: "future-web",
+    title: "The Future of Web Development",
+    description: "Exploring upcoming trends and technologies in web development",
+    content: "# The Future of Web Development\n\nContent coming soon...",
+    coverImage: "/blog/future-web.png",
+    publishedAt: "2024-01-15",
+    readingTime: "5 min read",
+    category: "Technology",
+    featured: true,
+    tags: ["Web Development", "Future Tech", "Trends"],
+    author: {
+      name: "Naazim Khan",
+      title: "Senior Software Engineer",
+      avatar: "/profile/avatar.svg",
+      social: {
+        twitter: "https://twitter.com/knaazimkhan",
+        github: "https://github.com/naazim",
+        linkedin: "https://linkedin.com/in/naazim",
+      },
+    },
+  },
+  {
+    id: "2",
+    slug: "portfolio-guide",
+    title: "Building a Modern Portfolio",
+    description: "A comprehensive guide to creating a standout developer portfolio",
+    content: "# Building a Modern Portfolio\n\nContent coming soon...",
+    coverImage: "/blog/portfolio-guide.png",
+    publishedAt: "2024-01-10",
+    readingTime: "8 min read",
+    category: "Tutorial",
+    featured: true,
+    tags: ["Portfolio", "Career", "Web Development"],
+    author: {
+      name: "Naazim Khan",
+      title: "Senior Software Engineer",
+      avatar: "/profile/avatar.svg",
+      social: {
+        twitter: "https://twitter.com/knaazimkhan",
+        github: "https://github.com/naazim",
+        linkedin: "https://linkedin.com/in/naazim",
+      },
+    },
+  },
+  {
+    id: "3",
+    slug: "typescript-guide",
+    title: "TypeScript Best Practices",
+    description: "Essential TypeScript patterns and practices for modern web development",
+    content: "# TypeScript Best Practices\n\nContent coming soon...",
+    coverImage: "/blog/typescript-guide.png",
+    publishedAt: "2024-01-05",
+    readingTime: "6 min read",
+    category: "Tutorial",
+    tags: ["TypeScript", "JavaScript", "Web Development"],
+    author: {
+      name: "Naazim Khan",
+      title: "Senior Software Engineer",
+      avatar: "/profile/avatar.svg",
+      social: {
+        twitter: "https://twitter.com/knaazimkhan",
+        github: "https://github.com/naazim",
+        linkedin: "https://linkedin.com/in/naazim",
+      },
+    },
+  },
+]; 
