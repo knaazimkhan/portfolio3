@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FaGithub, FaExternalLinkAlt, FaPlay } from "react-icons/fa";
 import { ScrollAnimation } from "@/components/ui/scroll-animation";
 import { Badge } from "@/components/ui/badge";
@@ -102,11 +102,10 @@ export const ProjectsSection = () => {
   const [category, setCategory] = useState<typeof categories[number]>("all");
   const [isLoading, setIsLoading] = useState(true);
 
-  // Simulate loading state
-  useState(() => {
+  useEffect(() => {
     const timer = setTimeout(() => setIsLoading(false), 1000);
     return () => clearTimeout(timer);
-  });
+  }, []);
 
   const filteredProjects = projects.filter(
     (project) => category === "all" || project.category === category

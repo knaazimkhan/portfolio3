@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { ScrollAnimation } from "@/components/ui/scroll-animation";
 import { HoverCard, HoverCardTrigger, HoverCardContent } from "@/components/ui/hover-card";
 import { SkillCardSkeleton } from "@/components/ui/skill-card-skeleton";
@@ -118,11 +118,10 @@ const SkillCard = ({ category, index }: { category: any; index: number }) => (
 export const SkillsSection = () => {
   const [isLoading, setIsLoading] = useState(true);
 
-  // Simulate loading state
-  useState(() => {
+  useEffect(() => {
     const timer = setTimeout(() => setIsLoading(false), 1000);
     return () => clearTimeout(timer);
-  });
+  }, []);
 
   if (isLoading) {
     return (

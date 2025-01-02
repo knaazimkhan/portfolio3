@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FaGraduationCap, FaCalendar, FaMapMarkerAlt, FaTrophy, FaUsers, FaBook } from "react-icons/fa";
 import { ScrollAnimation } from "@/components/ui/scroll-animation";
 import { GradientBackground } from "@/components/ui/gradient-background";
@@ -124,11 +124,10 @@ const EducationCard = ({ edu, index }: { edu: any; index: number }) => (
 export const EducationSection = () => {
   const [isLoading, setIsLoading] = useState(true);
 
-  // Simulate loading state
-  useState(() => {
+  useEffect(() => {
     const timer = setTimeout(() => setIsLoading(false), 1000);
     return () => clearTimeout(timer);
-  });
+  }, []);
 
   if (isLoading) {
     return (

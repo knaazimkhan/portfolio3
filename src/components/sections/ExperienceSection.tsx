@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FaGraduationCap, FaCalendar, FaMapMarkerAlt, FaBriefcase } from "react-icons/fa";
 import { ScrollAnimation } from "@/components/ui/scroll-animation";
 import { GradientBackground } from "@/components/ui/gradient-background";
@@ -119,11 +119,10 @@ const ExperienceCard = ({ item, index, isEven }: { item: any; index: number; isE
 export const ExperienceSection = () => {
   const [isLoading, setIsLoading] = useState(true);
 
-  // Simulate loading state
-  useState(() => {
+  useEffect(() => {
     const timer = setTimeout(() => setIsLoading(false), 1000);
     return () => clearTimeout(timer);
-  });
+  }, []);
 
   if (isLoading) {
     return (
