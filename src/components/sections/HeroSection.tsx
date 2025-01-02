@@ -40,24 +40,23 @@ export const HeroSection = () => {
 
   useEffect(() => {
     const role = roles[roleIndex];
-    const updateText = () => {
-      if (!isDeleting) {
-        if (displayText.length < role.length) {
-          setDisplayText(role.slice(0, displayText.length + 1));
-          return setTimeout(updateText, 100);
-        }
-        setTimeout(() => setIsDeleting(true), 1500);
-      } else {
-        if (displayText.length > 0) {
-          setDisplayText(role.slice(0, displayText.length - 1));
-          return setTimeout(updateText, 50);
-        }
-        setIsDeleting(false);
-        setRoleIndex((prev) => (prev + 1) % roles.length);
-      }
-    };
+    let timeout: NodeJS.Timeout;
 
-    const timeout = setTimeout(updateText, 100);
+    if (!isDeleting && displayText === role) {
+      // Wait before starting to delete
+      timeout = setTimeout(() => setIsDeleting(true), 2000);
+    } else if (isDeleting && displayText === "") {
+      // Move to next role
+      setIsDeleting(false);
+      setRoleIndex((prev) => (prev + 1) % roles.length);
+    } else {
+      // Calculate new text
+      const delta = isDeleting ? -1 : 1;
+      timeout = setTimeout(() => {
+        setDisplayText(role.substring(0, displayText.length + delta));
+      }, isDeleting ? 50 : 150);
+    }
+
     return () => clearTimeout(timeout);
   }, [displayText, roleIndex, isDeleting]);
 
@@ -82,8 +81,10 @@ export const HeroSection = () => {
             variants={itemVariants}
           >
             I'm a{" "}
-            <span className="text-primary font-semibold">{displayText}</span>
-            <span className="animate-pulse">|</span>
+            <span className="text-primary font-semibold">
+              {displayText}
+              <span className="animate-pulse">|</span>
+            </span>
           </motion.p>
           <ParallaxScroll offset={20}>
             <motion.p 
