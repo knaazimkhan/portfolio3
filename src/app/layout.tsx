@@ -1,19 +1,17 @@
 import type { Metadata } from "next";
-import { Suspense } from "react";
-import { Inter } from "next/font/google";
-import { ThemeProvider } from "@/components/theme-provider";
-import { Loading } from "@/components/ui/loading";
-import { PageTransition } from "@/components/ui/page-transition";
-import { cn } from "@/lib/utils";
-import "./globals.css";
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
+import { GeistSans } from "geist/font/sans";
+import { GeistMono } from "geist/font/mono";
 
-// Optimize font loading
-const inter = Inter({
-  subsets: ["latin"],
-  display: "swap",
-  preload: true,
-  variable: "--font-inter",
-});
+import { ThemeProvider } from "@/components/theme-provider";
+import { Header } from "@/components/layout/Header";
+import { Footer } from "@/components/layout/Footer";
+import { CursorEffect } from "@/components/ui/cursor-effect";
+import { ShortcutsHelp } from "@/components/shortcuts-help";
+import { cn } from "@/lib/utils";
+
+import "@/styles/globals.css";
 
 const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://your-domain.com';
 const name = "Your Name";
@@ -204,19 +202,19 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning className={inter.variable}>
+    <html 
+      lang="en" 
+      suppressHydrationWarning 
+      className={cn(
+        GeistSans.variable,
+        GeistMono.variable,
+        "antialiased"
+      )}
+    >
       <head>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
-        {/* Preload critical assets */}
-        <link
-          rel="preload"
-          href="/fonts/inter-var.woff2"
-          as="font"
-          type="font/woff2"
-          crossOrigin="anonymous"
         />
         {/* Preconnect to external domains */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -225,19 +223,25 @@ export default function RootLayout({
         <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" />
         <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
       </head>
-      <body className={cn(inter.className, "min-h-screen bg-background antialiased")}>
+      <body className="min-h-screen bg-background">
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
           enableSystem
           disableTransitionOnChange
         >
-          <Suspense fallback={<Loading text="Loading..." />}>
-            <PageTransition>
+          <div className="relative flex min-h-screen flex-col">
+            <Header />
+            <main className="flex-1" id="main-content">
               {children}
-            </PageTransition>
-          </Suspense>
+            </main>
+            <Footer />
+          </div>
+          <CursorEffect />
+          <ShortcutsHelp />
         </ThemeProvider>
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );

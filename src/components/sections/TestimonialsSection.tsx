@@ -68,6 +68,19 @@ export const TestimonialsSection = () => {
   };
 
   useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "ArrowLeft") {
+        paginate(-1);
+      } else if (e.key === "ArrowRight") {
+        paginate(1);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [page]);
+
+  useEffect(() => {
     if (!autoplay) return;
 
     const timer = setInterval(() => {
@@ -113,6 +126,12 @@ export const TestimonialsSection = () => {
             animate="visible"
             onHoverStart={() => setAutoplay(false)}
             onHoverEnd={() => setAutoplay(true)}
+            onFocus={() => setAutoplay(false)}
+            onBlur={() => setAutoplay(true)}
+            tabIndex={0}
+            role="region"
+            aria-label="Testimonials carousel"
+            aria-roledescription="carousel"
           >
             <AnimatePresence initial={false} custom={direction}>
               <motion.div
@@ -139,6 +158,9 @@ export const TestimonialsSection = () => {
                   }
                 }}
                 className="absolute w-full"
+                role="group"
+                aria-roledescription="slide"
+                aria-label={`${testimonialIndex + 1} of ${testimonials.length}`}
               >
                 <div className="bg-background/50 backdrop-blur-sm rounded-lg border p-8 md:p-12 max-w-4xl mx-auto">
                   <div className="flex flex-col md:flex-row gap-8 items-center">
@@ -211,32 +233,57 @@ export const TestimonialsSection = () => {
             <div className="absolute z-10 w-full top-1/2 -translate-y-1/2 flex justify-between px-4">
               <button
                 onClick={() => paginate(-1)}
-                className="p-2 rounded-full bg-background/50 backdrop-blur-sm border shadow-sm hover:bg-background/80 transition-colors"
+                className="p-2 rounded-full bg-background/50 backdrop-blur-sm border shadow-sm hover:bg-background/80 transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
                 aria-label="Previous testimonial"
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    paginate(-1);
+                  }
+                }}
               >
                 <FaChevronLeft className="w-6 h-6" />
               </button>
               <button
                 onClick={() => paginate(1)}
-                className="p-2 rounded-full bg-background/50 backdrop-blur-sm border shadow-sm hover:bg-background/80 transition-colors"
+                className="p-2 rounded-full bg-background/50 backdrop-blur-sm border shadow-sm hover:bg-background/80 transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
                 aria-label="Next testimonial"
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    paginate(1);
+                  }
+                }}
               >
                 <FaChevronRight className="w-6 h-6" />
               </button>
             </div>
 
             {/* Dots */}
-            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+            <div 
+              className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2"
+              role="tablist"
+              aria-label="Testimonials slides"
+            >
               {testimonials.map((_, index) => (
                 <button
                   key={index}
                   onClick={() => setPage([index, index > testimonialIndex ? 1 : -1])}
-                  className={`w-2 h-2 rounded-full transition-colors ${
+                  className={`w-2 h-2 rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 ${
                     index === testimonialIndex
                       ? "bg-primary"
                       : "bg-primary/20 hover:bg-primary/40"
                   }`}
                   aria-label={`Go to testimonial ${index + 1}`}
+                  aria-selected={index === testimonialIndex}
+                  role="tab"
+                  tabIndex={0}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === " ") {
+                      e.preventDefault();
+                      setPage([index, index > testimonialIndex ? 1 : -1]);
+                    }
+                  }}
                 />
               ))}
             </div>
