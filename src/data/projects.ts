@@ -117,8 +117,8 @@ export const projects: Project[] = [
   {
     id: "aqarchain",
     title: "Aqarchain",
-    description: "A blockchain-based real estate platform revolutionizing property transactions with tokenization and smart contracts.",
-    longDescription: "A comprehensive real estate platform that combines blockchain technology with traditional real estate, offering property tokenization, smart contract-based transactions, and a seamless marketplace for buying, selling, and investing in real estate.",
+    description: "A blockchain-based real estate platform revolutionizing property transactions with tokenization and smart contracts. (Collaborator & Technical Supervisor)",
+    longDescription: "A comprehensive real estate platform that combines blockchain technology with traditional real estate, offering property tokenization, smart contract-based transactions, and a seamless marketplace for buying, selling, and investing in real estate. Contributing as a collaborator and technical supervisor to ensure best practices and project success.",
     image: "/projects/aqarchain/thumbnail.png",
     technologies: [
       "Next.js",
@@ -131,7 +131,7 @@ export const projects: Project[] = [
       "GraphQL API",
       "REST API",
       "JWT Authentication",
-      "Responsive Design",
+      "Responsive Design"
     ],
     category: "web",
     featured: true,
@@ -140,6 +140,8 @@ export const projects: Project[] = [
     },
     completedAt: "2024-01",
     highlights: [
+      "Technical supervision and project collaboration",
+      "Code review and architecture planning",
       "Real estate tokenization platform",
       "Property marketplace with advanced filters",
       "Digital wallet integration for transactions",
