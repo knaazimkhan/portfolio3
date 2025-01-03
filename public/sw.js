@@ -1,96 +1,92 @@
-const CACHE_NAME = 'portfolio-cache-v1';
-const OFFLINE_URL = '/offline';
-const DEBUG = false; // Set to false in production
+// Skip service worker in development
+if (process.env.NODE_ENV === 'development') {
+  self.addEventListener('install', () => self.skipWaiting());
+  self.addEventListener('activate', () => self.clients.claim());
+} else {
+  const CACHE_NAME = 'portfolio-cache-v1';
+  const OFFLINE_URL = '/offline';
 
-const urlsToCache = [
-  '/',
-  '/offline',
-  '/manifest.json',
-  '/favicon.ico',
-  '/robots.txt',
-  '/sitemap.xml',
-  // Add other static assets here
-];
+  // Install event - cache basic assets
+  self.addEventListener('install', (event) => {
+    event.waitUntil(
+      (async () => {
+        const cache = await caches.open(CACHE_NAME);
+        // Cache basic assets
+        await cache.addAll([
+          '/',
+          OFFLINE_URL,
+          '/manifest.json',
+          '/favicon.ico',
+        ]);
+        // Force the waiting service worker to become the active service worker
+        await self.skipWaiting();
+      })()
+    );
+  });
 
-// Helper function for logging
-const log = (...args) => {
-  if (DEBUG) {
-    console.log(...args);
-  }
-};
+  // Activate event - clean up old caches
+  self.addEventListener('activate', (event) => {
+    event.waitUntil(
+      (async () => {
+        // Clean up old caches
+        const cacheNames = await caches.keys();
+        await Promise.all(
+          cacheNames
+            .filter((name) => name !== CACHE_NAME)
+            .map((name) => caches.delete(name))
+        );
+        // Take control of all pages immediately
+        await self.clients.claim();
+      })()
+    );
+  });
 
-const error = (...args) => {
-  if (DEBUG) {
-    console.error(...args);
-  }
-};
+  // Fetch event - network first, fallback to cache
+  self.addEventListener('fetch', (event) => {
+    // Only handle GET requests
+    if (event.request.method !== 'GET') return;
 
-// Install event - cache static assets
-self.addEventListener('install', (event) => {
-  event.waitUntil(
-    caches.open(CACHE_NAME)
-      .then((cache) => {
-        log('Opened cache');
-        return cache.addAll(urlsToCache);
-      })
-      .catch((err) => {
-        error('Error caching static assets:', err);
-      })
-  );
-});
+    // Skip Chrome DevTools requests
+    if (event.request.cache === 'only-if-cached' && event.request.mode !== 'same-origin') {
+      return;
+    }
 
-// Activate event - clean up old caches
-self.addEventListener('activate', (event) => {
-  event.waitUntil(
-    caches.keys().then((cacheNames) => {
-      return Promise.all(
-        cacheNames.map((cacheName) => {
-          if (cacheName !== CACHE_NAME) {
-            log('Deleting old cache:', cacheName);
-            return caches.delete(cacheName);
+    event.respondWith(
+      (async () => {
+        try {
+          // Try network first
+          const networkResponse = await fetch(event.request);
+          
+          // Cache successful responses
+          if (networkResponse.ok) {
+            const cache = await caches.open(CACHE_NAME);
+            cache.put(event.request, networkResponse.clone());
           }
-        })
-      );
-    })
-  );
-});
+          
+          return networkResponse;
+        } catch (error) {
+          // Network failed, try cache
+          const cachedResponse = await caches.match(event.request);
+          if (cachedResponse) {
+            return cachedResponse;
+          }
 
-// Fetch event - serve from cache, fallback to network
-self.addEventListener('fetch', (event) => {
-  event.respondWith(
-    caches.match(event.request)
-      .then((response) => {
-        // Cache hit - return response
-        if (response) {
-          return response;
+          // For navigation requests, return offline page
+          if (event.request.mode === 'navigate') {
+            const cache = await caches.open(CACHE_NAME);
+            return cache.match(OFFLINE_URL);
+          }
+
+          throw error;
         }
+      })()
+    );
+  });
 
-        // Clone the request because it can only be used once
-        const fetchRequest = event.request.clone();
-
-        return fetch(fetchRequest)
-          .then((response) => {
-            // Check if we received a valid response
-            if (!response || response.status !== 200 || response.type !== 'basic') {
-              return response;
-            }
-
-            // Clone the response because it can only be used once
-            const responseToCache = response.clone();
-
-            caches.open(CACHE_NAME)
-              .then((cache) => {
-                cache.put(event.request, responseToCache);
-              });
-
-            return response;
-          })
-          .catch(() => {
-            // Network failed, try to serve offline page
-            if (event.request.mode === 'navigate') {
-              return caches.match(OFFLINE_URL);
-            }
-          });
-      })
-  );
-}); 
+  // Listen for messages from clients
+  self.addEventListener('message', (event) => {
+    if (event.data.type === 'SKIP_WAITING') {
+      self.skipWaiting();
+    }
+  });
+}
