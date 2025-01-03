@@ -50,13 +50,16 @@ export const projects: Project[] = [
       "TypeScript",
       "TailwindCSS",
       "Node.js",
+      "Payload CMS v2",
       "MongoDB",
       "Express.js",
       "Digital Wallet UI Integration",
       "REST API",
+      "GraphQL API",
       "JWT Authentication",
       "Responsive Design",
-      "Web3 Frontend Integration"
+      "Web3 Frontend Integration",
+      "Access Control"
     ],
     category: "web3",
     featured: true,
@@ -72,6 +75,8 @@ export const projects: Project[] = [
       "Auction and fixed price sale options",
       "Authentication and ownership verification",
       "Multi-chain support for NFT trading",
+      "Content management with Payload CMS",
+      "Role-based access control"
     ],
   },
   {
