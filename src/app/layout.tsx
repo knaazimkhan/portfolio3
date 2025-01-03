@@ -27,6 +27,30 @@ ogImage.searchParams.set('title', name);
 ogImage.searchParams.set('description', 'Full-stack Developer');
 const ogImageUrl = ogImage.toString();
 
+// JSON-LD structured data
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name,
+  url: baseUrl,
+  jobTitle: "Full-stack Developer",
+  description,
+  image: ogImageUrl,
+  sameAs: [
+    "https://github.com/yourusername",
+    "https://linkedin.com/in/yourusername",
+    "https://twitter.com/yourusername"
+  ],
+  knowsAbout: [
+    "Web Development",
+    "React",
+    "Next.js",
+    "TypeScript",
+    "Node.js",
+    "Full-stack Development"
+  ]
+};
+
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
   title: {
@@ -121,82 +145,6 @@ export const metadata: Metadata = {
     google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
   },
   category: "technology",
-};
-
-// JSON-LD structured data
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "Person",
-  "@id": `${baseUrl}/#person`,
-  name,
-  url: baseUrl,
-  image: {
-    "@type": "ImageObject",
-    url: `${baseUrl}/profile.jpg`,
-    width: "400",
-    height: "400",
-    "@id": `${baseUrl}/#image`,
-  },
-  sameAs: [
-    "https://github.com/yourusername",
-    "https://linkedin.com/in/yourusername",
-    "https://twitter.com/yourusername",
-  ],
-  jobTitle: "Full-stack Developer",
-  worksFor: {
-    "@type": "Organization",
-    name: "Your Company",
-  },
-  description,
-  knowsAbout: [
-    "Web Development",
-    "React",
-    "Next.js",
-    "TypeScript",
-    "Node.js",
-    "Full-stack Development",
-    "UI/UX Design",
-    "Responsive Design",
-    "Web Performance",
-    "SEO Optimization",
-  ],
-  mainEntityOfPage: {
-    "@type": "WebPage",
-    "@id": baseUrl,
-  },
-  alumniOf: [
-    {
-      "@type": "EducationalOrganization",
-      name: "Your University",
-      url: "https://university.edu",
-    },
-  ],
-  hasOccupation: {
-    "@type": "Occupation",
-    name: "Full-stack Developer",
-    occupationLocation: {
-      "@type": "City",
-      name: "Your City",
-    },
-    estimatedSalary: {
-      "@type": "MonetaryAmountDistribution",
-      currency: "USD",
-      duration: "P1Y",
-      percentile10: "80000",
-      percentile25: "90000",
-      median: "100000",
-      percentile75: "120000",
-      percentile90: "150000",
-    },
-    skills: [
-      "React",
-      "Next.js",
-      "TypeScript",
-      "Node.js",
-      "Full-stack Development",
-      "UI/UX Design",
-    ],
-  },
 };
 
 export default function RootLayout({
