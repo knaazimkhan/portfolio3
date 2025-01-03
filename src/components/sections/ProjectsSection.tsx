@@ -7,8 +7,8 @@ import { Badge } from "@/components/ui/badge";
 import { HoverCard } from "@/components/ui/hover-card";
 import { GradientBackground } from "@/components/ui/gradient-background";
 import { ProjectCardSkeleton } from "@/components/ui/project-card-skeleton";
+import { ImageWithLoading } from "@/components/ui/image-with-loading";
 import { projects } from "@/data/projects";
-import Image from "next/image";
 import Link from "next/link";
 import { Project } from "@/types/project";
 import { useLoading } from "@/hooks/use-loading";
@@ -25,7 +25,7 @@ const ProjectCard = ({ project, index }: { project: Project; index: number }) =>
       <div className="group relative rounded-lg border bg-background/50 overflow-hidden backdrop-blur-sm">
         <Link href={`/projects/${project.id}`} className="block">
           <div className="relative aspect-video overflow-hidden">
-            <Image
+            <ImageWithLoading
               src={project.image}
               alt={project.title}
               width={800}
@@ -65,6 +65,7 @@ const ProjectCard = ({ project, index }: { project: Project; index: number }) =>
               }}
               className="text-muted-foreground hover:text-primary transition-colors"
               title="View Source Code"
+              aria-label="View source code on GitHub"
             >
               <FaGithub className="w-5 h-5" />
             </button>
@@ -77,6 +78,7 @@ const ProjectCard = ({ project, index }: { project: Project; index: number }) =>
               }}
               className="text-muted-foreground hover:text-primary transition-colors"
               title="View Demo"
+              aria-label="View live demo"
             >
               <FaPlay className="w-5 h-5" />
             </button>
@@ -89,6 +91,7 @@ const ProjectCard = ({ project, index }: { project: Project; index: number }) =>
               }}
               className="text-muted-foreground hover:text-primary transition-colors"
               title="Visit Live Site"
+              aria-label="Visit live website"
             >
               <FaExternalLinkAlt className="w-4 h-4" />
             </button>

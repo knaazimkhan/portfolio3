@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { ScrollAnimation } from "@/components/ui/scroll-animation";
@@ -10,6 +9,7 @@ import { AnimatedText } from "@/components/ui/animated-text";
 import { ParallaxScroll } from "@/components/ui/parallax-scroll";
 import { GradientBackground } from "@/components/ui/gradient-background";
 import { HeroSectionSkeleton } from "@/components/ui/hero-section-skeleton";
+import { ImageWithLoading } from "@/components/ui/image-with-loading";
 import { useLoading } from "@/hooks/use-loading";
 
 const roles = [
@@ -124,7 +124,7 @@ export const HeroSection = () => {
               variants={itemVariants}
               className="relative w-full aspect-square rounded-full overflow-hidden border-8 border-background/50 shadow-2xl"
             >
-              <Image
+              <ImageWithLoading
                 src="/profile.jpg"
                 alt="Profile"
                 fill
