@@ -19,7 +19,9 @@ export const projects: Project[] = [
       "Analytics Dashboard",
       "REST API",
       "JWT Authentication",
-      "Responsive Design"
+      "Responsive Design",
+      "Multi-tenant Architecture",
+      "RBAC (Role-Based Access Control)"
     ],
     category: "web",
     featured: true,
@@ -28,6 +30,8 @@ export const projects: Project[] = [
     },
     completedAt: "2024-01",
     highlights: [
+      "Multi-tenant system supporting multiple restaurants and brands",
+      "Role-based access control for staff management",
       "Contactless QR Code menus for HORECA clients",
       "Real-time menu management and updates",
       "Custom branded menu designs",
