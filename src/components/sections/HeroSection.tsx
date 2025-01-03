@@ -122,14 +122,16 @@ export const HeroSection = () => {
           <ParallaxScroll className="relative lg:block">
             <motion.div
               variants={itemVariants}
-              className="relative w-full aspect-square rounded-full overflow-hidden border-8 border-background/50 shadow-2xl"
+              className="relative w-[300px] md:w-[400px] aspect-square mx-auto rounded-full overflow-hidden shadow-2xl"
             >
               <ImageWithLoading
-                src="/profile.jpg"
+                src="/profile/profile.jpeg"
                 alt="Profile"
-                fill
-                className="object-cover"
+                width={460}
+                height={460}
+                className="absolute inset-0 w-full h-full object-cover"
                 priority
+                wrapperClassName="absolute inset-0"
               />
             </motion.div>
           </ParallaxScroll>
