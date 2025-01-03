@@ -7,6 +7,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 
 interface ImageWithLoadingProps extends Omit<ImageProps, "onLoadingComplete" | "onError"> {
   wrapperClassName?: string;
+  priority?: boolean;
 }
 
 export const ImageWithLoading = ({
@@ -14,6 +15,7 @@ export const ImageWithLoading = ({
   src,
   className,
   wrapperClassName,
+  priority = false,
   ...props
 }: ImageWithLoadingProps) => {
   const [isLoading, setIsLoading] = useState(true);
@@ -26,7 +28,6 @@ export const ImageWithLoading = ({
           "flex items-center justify-center bg-muted",
           wrapperClassName
         )}
-        {...props}
       >
         <span className="text-sm text-muted-foreground">Failed to load image</span>
       </div>
@@ -38,12 +39,12 @@ export const ImageWithLoading = ({
       {isLoading && (
         <Skeleton
           className={cn("absolute inset-0", className)}
-          {...props}
         />
       )}
       <Image
         src={src}
         alt={alt}
+        priority={priority}
         className={cn(isLoading ? "opacity-0" : "opacity-100 transition-opacity duration-200", className)}
         onLoadingComplete={() => setIsLoading(false)}
         onError={() => {
