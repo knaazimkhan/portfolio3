@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { FaQuoteLeft, FaStar, FaChevronLeft, FaChevronRight, FaMapMarkerAlt, FaCalendar, FaExternalLinkAlt } from "react-icons/fa";
@@ -11,6 +11,7 @@ import { GradientBackground } from "@/components/ui/gradient-background";
 import { testimonials } from "@/data/testimonials";
 import { SectionTitle } from '@/components/ui/section-title';
 import { TestimonialsSkeleton } from "@/components/ui/testimonials-skeleton";
+import { useLoading } from "@/hooks/use-loading";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -59,13 +60,13 @@ const swipePower = (offset: number, velocity: number) => {
 export const TestimonialsSection = () => {
   const [[page, direction], setPage] = useState([0, 0]);
   const [autoplay, setAutoplay] = useState(true);
-  const [isLoading, setIsLoading] = useState(true);
+  const isLoading = useLoading();
 
   const testimonialIndex = Math.abs(page % testimonials.length);
 
-  const paginate = (newDirection: number) => {
+  const paginate = useCallback((newDirection: number) => {
     setPage([page + newDirection, newDirection]);
-  };
+  }, [page]);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -78,7 +79,7 @@ export const TestimonialsSection = () => {
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [page]);
+  }, [paginate]);
 
   useEffect(() => {
     if (!autoplay) return;
@@ -88,12 +89,7 @@ export const TestimonialsSection = () => {
     }, 5000);
 
     return () => clearInterval(timer);
-  }, [page, autoplay]);
-
-  useEffect(() => {
-    const timer = setTimeout(() => setIsLoading(false), 1000);
-    return () => clearTimeout(timer);
-  }, []);
+  }, [autoplay, paginate]);
 
   if (isLoading) {
     return (
@@ -111,28 +107,14 @@ export const TestimonialsSection = () => {
     <section id="testimonials" className="py-20 px-4">
       <GradientBackground variant="subtle">
         <div className="container mx-auto max-w-6xl">
-          <SectionTitle
-            title="Client Testimonials"
-            description="What people say about working with me"
-            titleAnimation="wave"
-            descriptionAnimation="slide"
-            parallaxOffset={30}
-          />
+          <ScrollAnimation animation="slide" className="text-center mb-12">
+            <SectionTitle
+              title="What People Say"
+              description="Testimonials from clients and colleagues"
+            />
+          </ScrollAnimation>
 
-          <motion.div
-            className="relative h-[500px] md:h-[400px]"
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
-            onHoverStart={() => setAutoplay(false)}
-            onHoverEnd={() => setAutoplay(true)}
-            onFocus={() => setAutoplay(false)}
-            onBlur={() => setAutoplay(true)}
-            tabIndex={0}
-            role="region"
-            aria-label="Testimonials carousel"
-            aria-roledescription="carousel"
-          >
+          <div className="relative">
             <AnimatePresence initial={false} custom={direction}>
               <motion.div
                 key={page}
@@ -143,24 +125,20 @@ export const TestimonialsSection = () => {
                 exit="exit"
                 transition={{
                   x: { type: "spring", stiffness: 300, damping: 30 },
-                  opacity: { duration: 0.2 }
+                  opacity: { duration: 0.2 },
                 }}
+                className="relative"
                 drag="x"
                 dragConstraints={{ left: 0, right: 0 }}
                 dragElastic={1}
-                onDragEnd={(e, { offset, velocity }) => {
+                onDragEnd={(_, { offset, velocity }) => {
                   const swipe = swipePower(offset.x, velocity.x);
-
                   if (swipe < -swipeConfidenceThreshold) {
                     paginate(1);
                   } else if (swipe > swipeConfidenceThreshold) {
                     paginate(-1);
                   }
                 }}
-                className="absolute w-full"
-                role="group"
-                aria-roledescription="slide"
-                aria-label={`${testimonialIndex + 1} of ${testimonials.length}`}
               >
                 <div className="bg-background/50 backdrop-blur-sm rounded-lg border p-8 md:p-12 max-w-4xl mx-auto">
                   <div className="flex flex-col md:flex-row gap-8 items-center">
@@ -229,65 +207,23 @@ export const TestimonialsSection = () => {
               </motion.div>
             </AnimatePresence>
 
-            {/* Navigation Buttons */}
-            <div className="absolute z-10 w-full top-1/2 -translate-y-1/2 flex justify-between px-4">
+            <div className="absolute top-1/2 -translate-y-1/2 left-0 right-0 flex justify-between px-4">
               <button
                 onClick={() => paginate(-1)}
-                className="p-2 rounded-full bg-background/50 backdrop-blur-sm border shadow-sm hover:bg-background/80 transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+                className="p-2 rounded-full bg-background/80 backdrop-blur-sm hover:bg-background/90 transition-colors"
                 aria-label="Previous testimonial"
-                onKeyDown={(e) => {
-                  if (e.key === "Enter" || e.key === " ") {
-                    e.preventDefault();
-                    paginate(-1);
-                  }
-                }}
               >
                 <FaChevronLeft className="w-6 h-6" />
               </button>
               <button
                 onClick={() => paginate(1)}
-                className="p-2 rounded-full bg-background/50 backdrop-blur-sm border shadow-sm hover:bg-background/80 transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+                className="p-2 rounded-full bg-background/80 backdrop-blur-sm hover:bg-background/90 transition-colors"
                 aria-label="Next testimonial"
-                onKeyDown={(e) => {
-                  if (e.key === "Enter" || e.key === " ") {
-                    e.preventDefault();
-                    paginate(1);
-                  }
-                }}
               >
                 <FaChevronRight className="w-6 h-6" />
               </button>
             </div>
-
-            {/* Dots */}
-            <div 
-              className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2"
-              role="tablist"
-              aria-label="Testimonials slides"
-            >
-              {testimonials.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => setPage([index, index > testimonialIndex ? 1 : -1])}
-                  className={`w-2 h-2 rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 ${
-                    index === testimonialIndex
-                      ? "bg-primary"
-                      : "bg-primary/20 hover:bg-primary/40"
-                  }`}
-                  aria-label={`Go to testimonial ${index + 1}`}
-                  aria-selected={index === testimonialIndex}
-                  role="tab"
-                  tabIndex={0}
-                  onKeyDown={(e) => {
-                    if (e.key === "Enter" || e.key === " ") {
-                      e.preventDefault();
-                      setPage([index, index > testimonialIndex ? 1 : -1]);
-                    }
-                  }}
-                />
-              ))}
-            </div>
-          </motion.div>
+          </div>
         </div>
       </GradientBackground>
     </section>
