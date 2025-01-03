@@ -10,6 +10,7 @@ import {
   ContactSection,
 } from '@/components/lazy';
 import { PageTransition } from "@/components/ui/page-transition";
+import { ErrorBoundary } from "@/components/error-boundary";
 
 export default function HomePage() {
   return (
@@ -18,36 +19,52 @@ export default function HomePage() {
         <h1 className="sr-only">Portfolio - Your Name</h1>
         <div className="flex-1">
           {/* Hero section is not lazy loaded as it's above the fold */}
-          <HeroSection />
+          <ErrorBoundary>
+            <HeroSection />
+          </ErrorBoundary>
 
-        {/* Lazy load below-fold sections */}
-        <Suspense>
-          <ProjectsSection />
-        </Suspense>
+          {/* Lazy load below-fold sections */}
+          <ErrorBoundary>
+            <Suspense>
+              <ProjectsSection />
+            </Suspense>
+          </ErrorBoundary>
 
-        <Suspense>
-          <SkillsSection />
-        </Suspense>
+          <ErrorBoundary>
+            <Suspense>
+              <SkillsSection />
+            </Suspense>
+          </ErrorBoundary>
 
-        <Suspense>
-          <ExperienceSection />
-        </Suspense>
+          <ErrorBoundary>
+            <Suspense>
+              <ExperienceSection />
+            </Suspense>
+          </ErrorBoundary>
 
-        <Suspense>
-          <EducationSection />
-        </Suspense>
+          <ErrorBoundary>
+            <Suspense>
+              <EducationSection />
+            </Suspense>
+          </ErrorBoundary>
 
-        <Suspense>
-          <BlogSection />
-        </Suspense>
+          <ErrorBoundary>
+            <Suspense>
+              <BlogSection />
+            </Suspense>
+          </ErrorBoundary>
 
-        <Suspense>
-          <TestimonialsSection />
-        </Suspense>
+          <ErrorBoundary>
+            <Suspense>
+              <TestimonialsSection />
+            </Suspense>
+          </ErrorBoundary>
 
-          <Suspense>
-            <ContactSection />
-          </Suspense>
+          <ErrorBoundary>
+            <Suspense>
+              <ContactSection />
+            </Suspense>
+          </ErrorBoundary>
         </div>
       </main>
     </PageTransition>
