@@ -130,7 +130,7 @@ export const HeroSection = () => {
                 width={460}
                 height={460}
                 className="absolute inset-0 w-full h-full object-cover"
-                priority
+                priority={true}
                 wrapperClassName="absolute inset-0"
               />
             </motion.div>
