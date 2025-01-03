@@ -1,138 +1,53 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import { useState } from "react";
+import { motion } from "framer-motion";
 import { ScrollAnimation } from "@/components/ui/scroll-animation";
-import { HoverCard, HoverCardTrigger, HoverCardContent } from "@/components/ui/hover-card";
-import { SkillCardSkeleton } from "@/components/ui/skill-card-skeleton";
+import { Badge } from "@/components/ui/badge";
+import { HoverCard } from "@/components/ui/hover-card";
 import { GradientBackground } from "@/components/ui/gradient-background";
-import { skillCategories } from "@/data/skills";
-import * as Icons from "react-icons/fa";
-import * as SiIcons from "react-icons/si";
+import { SkillsSkeleton } from "@/components/ui/skills-skeleton";
+import { skills } from "@/data/skills";
+import { useLoading } from "@/hooks/use-loading";
 
-const getIcon = (iconName: string) => {
-  const IconComponent = (Icons as any)[iconName] || (SiIcons as any)[iconName];
-  return IconComponent ? <IconComponent /> : null;
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
 };
 
-const getLevelColor = (level: string) => {
-  switch (level) {
-    case "beginner":
-      return "bg-yellow-500/10 text-yellow-500";
-    case "intermediate":
-      return "bg-blue-500/10 text-blue-500";
-    case "advanced":
-      return "bg-green-500/10 text-green-500";
-    case "expert":
-      return "bg-purple-500/10 text-purple-500";
-    default:
-      return "bg-gray-500/10 text-gray-500";
-  }
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      type: "spring",
+      stiffness: 100,
+    },
+  },
 };
-
-const SkillCard = ({ category, index }: { category: any; index: number }) => (
-  <ScrollAnimation
-    animation="fade"
-    delay={index * 0.1}
-    className="h-full"
-  >
-    <HoverCard>
-      <HoverCardTrigger asChild>
-        <div className="h-full rounded-lg border bg-background/50 p-6 backdrop-blur-sm hover:shadow-lg transition-all duration-300 hover:scale-[1.02] hover:border-primary">
-          <ScrollAnimation animation="slide" delay={index * 0.1}>
-            <div className="flex items-center gap-3 mb-4">
-              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary transition-transform duration-300 group-hover:scale-110">
-                {getIcon(category.icon)}
-              </div>
-              <div>
-                <h3 className="font-semibold">{category.name}</h3>
-                <p className="text-sm text-muted-foreground">
-                  {category.description}
-                </p>
-              </div>
-            </div>
-          </ScrollAnimation>
-
-          <div className="grid gap-3">
-            {category.skills.map((skill: any, skillIndex: number) => (
-              <ScrollAnimation
-                key={skill.id}
-                animation="slide"
-                delay={index * 0.1 + skillIndex * 0.05}
-                className="group relative rounded-lg border p-3 transition-all duration-300 hover:border-primary hover:shadow-sm"
-              >
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    {skill.icon && (
-                      <div
-                        className="text-lg transition-transform duration-300 group-hover:scale-110"
-                        style={{ color: skill.color }}
-                      >
-                        {getIcon(skill.icon)}
-                      </div>
-                    )}
-                    <span className="font-medium group-hover:text-primary transition-colors">
-                      {skill.name}
-                    </span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    {skill.yearsOfExperience && (
-                      <span className="text-xs text-muted-foreground">
-                        {skill.yearsOfExperience}+ years
-                      </span>
-                    )}
-                    <span
-                      className={`rounded-full px-2 py-0.5 text-xs font-medium transition-all duration-300 group-hover:scale-105 ${getLevelColor(
-                        skill.level
-                      )}`}
-                    >
-                      {skill.level}
-                    </span>
-                  </div>
-                </div>
-              </ScrollAnimation>
-            ))}
-          </div>
-        </div>
-      </HoverCardTrigger>
-      <HoverCardContent className="w-80">
-        <div className="space-y-2">
-          <h4 className="font-medium">{category.name} Skills</h4>
-          <ScrollAnimation animation="fade" delay={0.1}>
-            <p className="text-sm text-muted-foreground">{category.description}</p>
-            {category.details && (
-              <ul className="mt-2 ml-4 space-y-1">
-                {category.details.map((detail: string, i: number) => (
-                  <li key={i} className="text-sm text-muted-foreground">
-                    • {detail}
-                  </li>
-                ))}
-              </ul>
-            )}
-          </ScrollAnimation>
-        </div>
-      </HoverCardContent>
-    </HoverCard>
-  </ScrollAnimation>
-);
 
 export const SkillsSection = () => {
-  const [isLoading, setIsLoading] = useState(true);
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const isLoading = useLoading();
 
-  useEffect(() => {
-    const timer = setTimeout(() => setIsLoading(false), 1000);
-    return () => clearTimeout(timer);
-  }, []);
+  const filteredSkills = selectedCategory
+    ? skills.filter((skill) => skill.category === selectedCategory)
+    : skills;
+
+  const categories = Array.from(new Set(skills.map((skill) => skill.category)));
 
   if (isLoading) {
     return (
-      <section className="py-16 px-4 md:px-6">
-        <GradientBackground>
-          <div className="max-w-7xl mx-auto">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {Array.from({ length: 6 }).map((_, i) => (
-                <SkillCardSkeleton key={i} />
-              ))}
-            </div>
+      <section id="skills" className="py-20 px-4">
+        <GradientBackground variant="subtle">
+          <div className="container mx-auto max-w-6xl">
+            <SkillsSkeleton />
           </div>
         </GradientBackground>
       </section>
@@ -140,21 +55,89 @@ export const SkillsSection = () => {
   }
 
   return (
-    <section id="skills" className="py-16 px-4 md:px-6">
-      <GradientBackground>
-        <div className="max-w-7xl mx-auto">
+    <section id="skills" className="py-20 px-4">
+      <GradientBackground variant="subtle">
+        <div className="container mx-auto max-w-6xl">
           <ScrollAnimation animation="slide" className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4">Skills & Expertise</h2>
+            <h2 className="text-3xl font-bold mb-4">Skills & Technologies</h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              A comprehensive overview of my technical skills and areas of expertise.
+              A comprehensive list of my technical skills and the technologies I work with.
             </p>
           </ScrollAnimation>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {skillCategories.map((category, index) => (
-              <SkillCard key={category.name} category={category} index={index} />
+          <ScrollAnimation animation="fade" className="flex justify-center gap-2 mb-8">
+            <button
+              onClick={() => setSelectedCategory(null)}
+              className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+                selectedCategory === null
+                  ? "bg-primary text-primary-foreground"
+                  : "bg-muted hover:bg-muted/80"
+              }`}
+              aria-label="Show all skills"
+              aria-pressed={selectedCategory === null}
+            >
+              All
+            </button>
+            {categories.map((category) => (
+              <button
+                key={category}
+                onClick={() => setSelectedCategory(category)}
+                className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+                  selectedCategory === category
+                    ? "bg-primary text-primary-foreground"
+                    : "bg-muted hover:bg-muted/80"
+                }`}
+                aria-label={`Filter by ${category}`}
+                aria-pressed={selectedCategory === category}
+              >
+                {category}
+              </button>
             ))}
-          </div>
+          </ScrollAnimation>
+
+          <motion.div
+            className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+          >
+            {filteredSkills.map((skill, index) => (
+              <HoverCard key={skill.name}>
+                <motion.div
+                  variants={itemVariants}
+                  className="group relative p-6 bg-background/50 backdrop-blur-sm rounded-lg border text-center hover:border-primary transition-colors"
+                >
+                  <div className="mb-4">
+                    <skill.icon className="w-12 h-12 mx-auto text-primary" />
+                  </div>
+                  <h3 className="text-lg font-semibold mb-2">{skill.name}</h3>
+                  <p className="text-sm text-muted-foreground mb-4">
+                    {skill.description}
+                  </p>
+                  <div className="flex flex-wrap gap-2 justify-center">
+                    {skill.tags.map((tag) => (
+                      <Badge key={tag} variant="secondary">
+                        {tag}
+                      </Badge>
+                    ))}
+                  </div>
+                  {skill.proficiency && (
+                    <div className="mt-4">
+                      <div className="h-2 bg-muted rounded-full overflow-hidden">
+                        <div
+                          className="h-full bg-primary transition-all duration-500 ease-out"
+                          style={{ width: `${skill.proficiency}%` }}
+                        />
+                      </div>
+                      <p className="text-xs text-muted-foreground mt-1">
+                        Proficiency: {skill.proficiency}%
+                      </p>
+                    </div>
+                  )}
+                </motion.div>
+              </HoverCard>
+            ))}
+          </motion.div>
         </div>
       </GradientBackground>
     </section>

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { FaGithub, FaExternalLinkAlt, FaPlay } from "react-icons/fa";
 import { ScrollAnimation } from "@/components/ui/scroll-animation";
 import { Badge } from "@/components/ui/badge";
@@ -11,6 +11,7 @@ import { projects } from "@/data/projects";
 import Image from "next/image";
 import Link from "next/link";
 import { Project } from "@/types/project";
+import { useLoading } from "@/hooks/use-loading";
 
 const categories = ["all", "web", "mobile", "desktop", "other"] as const;
 
@@ -100,12 +101,7 @@ const ProjectCard = ({ project, index }: { project: Project; index: number }) =>
 
 export const ProjectsSection = () => {
   const [category, setCategory] = useState<typeof categories[number]>("all");
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    const timer = setTimeout(() => setIsLoading(false), 1000);
-    return () => clearTimeout(timer);
-  }, []);
+  const isLoading = useLoading();
 
   const filteredProjects = projects.filter(
     (project) => category === "all" || project.category === category
