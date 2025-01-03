@@ -90,15 +90,9 @@ export const projects: Project[] = [
       "TypeScript",
       "TailwindCSS",
       "Node.js",
-      "Payload CMS v2",
-      "MongoDB",
-      "Express.js",
-      "REST API",
+      "Strapi CMS",
+      "MySQL",
       "GraphQL API",
-      "JWT Authentication",
-      "MetaTrader 5 Integration",
-      "KYC Integration",
-      "Payment Gateway Integration",
       "Responsive Design"
     ],
     category: "fintech",
@@ -115,8 +109,7 @@ export const projects: Project[] = [
       "Real-time market data and price analysis",
       "Cross-platform accessibility (Desktop, Tablet, Mobile)",
       "Risk management tools and analytics",
-      "Content management with Payload CMS",
-      "Role-based access control"
+      "Content management with Strapi CMS",
     ],
   },
   {
