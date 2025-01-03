@@ -117,8 +117,8 @@ export const projects: Project[] = [
   {
     id: "aqarchain",
     title: "Aqarchain",
-    description: "A blockchain-based real estate platform revolutionizing property transactions with tokenization and smart contracts. (Collaborator & Technical Supervisor)",
-    longDescription: "A comprehensive real estate platform that combines blockchain technology with traditional real estate, offering property tokenization, smart contract-based transactions, and a seamless marketplace for buying, selling, and investing in real estate. Contributing as a collaborator and technical supervisor to ensure best practices and project success.",
+    description: "A modern real estate platform revolutionizing property transactions with digital solutions and smart features. (Collaborator & Technical Supervisor)",
+    longDescription: "A comprehensive real estate platform that modernizes traditional real estate, offering digital property management, seamless transactions, and an innovative marketplace for buying, selling, and investing in real estate. Contributing as a collaborator and technical supervisor to ensure best practices and project success.",
     image: "/projects/aqarchain/thumbnail.png",
     technologies: [
       "Next.js",
@@ -142,13 +142,13 @@ export const projects: Project[] = [
     highlights: [
       "Technical supervision and project collaboration",
       "Code review and architecture planning",
-      "Real estate tokenization platform",
+      "Digital property management platform",
       "Property marketplace with advanced filters",
-      "Digital wallet integration for transactions",
+      "Secure transaction system",
       "Real-time property analytics",
       "Multi-currency support",
       "Interactive property maps",
-      "Content management with Payload CMS"
+      "Content management with Strapi CMS"
     ],
   },
   {
