@@ -11,7 +11,7 @@ import { CursorEffect } from "@/components/ui/cursor-effect";
 import { ShortcutsHelp } from "@/components/shortcuts-help";
 import { cn } from "@/lib/utils";
 
-import "@/styles/globals.css";
+import "./globals.css";
 
 const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://your-domain.com';
 const name = "Your Name";
