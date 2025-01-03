@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "verify:emailjs": "ts-node scripts/verify-emailjs.ts"
+    "verify:emailjs": "ts-node scripts/verify-emailjs.ts",
+    "generate-icons": "node scripts/generate-icons.js"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
