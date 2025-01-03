@@ -9,6 +9,7 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { CursorEffect } from "@/components/ui/cursor-effect";
 import { ShortcutsHelp } from "@/components/shortcuts-help";
+import { RoutePrefetchProvider } from "@/components/providers/route-prefetch-provider";
 import { cn } from "@/lib/utils";
 
 import "./globals.css";
@@ -230,15 +231,17 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <div className="relative flex min-h-screen flex-col">
-            <Header />
-            <main className="flex-1" id="main-content">
-              {children}
-            </main>
-            <Footer />
-          </div>
-          <CursorEffect />
-          <ShortcutsHelp />
+          <RoutePrefetchProvider>
+            <div className="relative flex min-h-screen flex-col">
+              <Header />
+              <main className="flex-1" id="main-content">
+                {children}
+              </main>
+              <Footer />
+            </div>
+            <CursorEffect />
+            <ShortcutsHelp />
+          </RoutePrefetchProvider>
         </ThemeProvider>
         <Analytics />
         <SpeedInsights />
