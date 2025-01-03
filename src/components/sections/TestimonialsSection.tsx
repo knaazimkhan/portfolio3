@@ -10,6 +10,7 @@ import { ParallaxScroll } from "@/components/ui/parallax-scroll";
 import { GradientBackground } from "@/components/ui/gradient-background";
 import { testimonials } from "@/data/testimonials";
 import { SectionTitle } from '@/components/ui/section-title';
+import { TestimonialsSkeleton } from "@/components/ui/testimonials-skeleton";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -58,6 +59,7 @@ const swipePower = (offset: number, velocity: number) => {
 export const TestimonialsSection = () => {
   const [[page, direction], setPage] = useState([0, 0]);
   const [autoplay, setAutoplay] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
 
   const testimonialIndex = Math.abs(page % testimonials.length);
 
@@ -74,6 +76,23 @@ export const TestimonialsSection = () => {
 
     return () => clearInterval(timer);
   }, [page, autoplay]);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setIsLoading(false), 1000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (isLoading) {
+    return (
+      <section id="testimonials" className="py-20 px-4">
+        <GradientBackground variant="subtle">
+          <div className="container mx-auto max-w-6xl">
+            <TestimonialsSkeleton />
+          </div>
+        </GradientBackground>
+      </section>
+    );
+  }
 
   return (
     <section id="testimonials" className="py-20 px-4">

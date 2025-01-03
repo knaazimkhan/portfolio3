@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
@@ -13,6 +13,8 @@ import { HoverCard } from "@/components/ui/hover-card";
 import { blogPosts } from "@/data/blog";
 import { BlogPost, BlogCategory } from "@/types/blog";
 import { SectionTitle } from '@/components/ui/section-title';
+import { BlogSectionSkeleton } from "@/components/ui/blog-section-skeleton";
+import { GradientBackground } from "@/components/ui/gradient-background";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -52,6 +54,12 @@ export const BlogSection = () => {
   const [selectedCategory, setSelectedCategory] = useState<BlogCategory | "all">("all");
   const [searchQuery, setSearchQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setIsLoading(false), 1000);
+    return () => clearTimeout(timer);
+  }, []);
 
   const filteredPosts = useMemo(() => {
     let posts = blogPosts;
@@ -90,6 +98,18 @@ export const BlogSection = () => {
     // Smooth scroll to top of posts section
     document.getElementById("posts-grid")?.scrollIntoView({ behavior: "smooth" });
   };
+
+  if (isLoading) {
+    return (
+      <section id="blog" className="py-20 px-4">
+        <GradientBackground>
+          <div className="container mx-auto max-w-6xl">
+            <BlogSectionSkeleton />
+          </div>
+        </GradientBackground>
+      </section>
+    );
+  }
 
   return (
     <section id="blog" className="py-20 px-4">
