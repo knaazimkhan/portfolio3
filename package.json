@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "verify:emailjs": "ts-node scripts/verify-emailjs.ts",
-    "generate-icons": "node scripts/generate-icons.js"
+    "generate-icons": "node scripts/generate-icons.js",
+    "favicons": "tsx scripts/generate-favicons.ts"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
