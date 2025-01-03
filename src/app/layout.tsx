@@ -10,6 +10,7 @@ import { Footer } from "@/components/layout/Footer";
 import { CursorEffect } from "@/components/ui/cursor-effect";
 import { ShortcutsHelp } from "@/components/shortcuts-help";
 import { RoutePrefetchProvider } from "@/components/providers/route-prefetch-provider";
+import { ServiceWorkerProvider } from "@/components/providers/service-worker-provider";
 import { cn } from "@/lib/utils";
 
 import "./globals.css";
@@ -217,10 +218,9 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        {/* Preconnect to external domains */}
+        <link rel="manifest" href="/manifest.json" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        {/* Add meta theme color */}
         <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" />
         <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
       </head>
@@ -231,17 +231,19 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <RoutePrefetchProvider>
-            <div className="relative flex min-h-screen flex-col">
-              <Header />
-              <main className="flex-1" id="main-content">
-                {children}
-              </main>
-              <Footer />
-            </div>
-            <CursorEffect />
-            <ShortcutsHelp />
-          </RoutePrefetchProvider>
+          <ServiceWorkerProvider>
+            <RoutePrefetchProvider>
+              <div className="relative flex min-h-screen flex-col">
+                <Header />
+                <main className="flex-1" id="main-content">
+                  {children}
+                </main>
+                <Footer />
+              </div>
+              <CursorEffect />
+              <ShortcutsHelp />
+            </RoutePrefetchProvider>
+          </ServiceWorkerProvider>
         </ThemeProvider>
         <Analytics />
         <SpeedInsights />
