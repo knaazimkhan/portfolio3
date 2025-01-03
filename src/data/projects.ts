@@ -93,7 +93,8 @@ export const projects: Project[] = [
       "Strapi CMS",
       "MySQL",
       "GraphQL API",
-      "Responsive Design"
+      "Responsive Design",
+      "i18n Internationalization"
     ],
     category: "fintech",
     featured: true,
@@ -110,6 +111,7 @@ export const projects: Project[] = [
       "Cross-platform accessibility (Desktop, Tablet, Mobile)",
       "Risk management tools and analytics",
       "Content management with Strapi CMS",
+      "Bilingual support (English & Arabic)"
     ],
   },
   {
