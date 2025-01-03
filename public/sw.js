@@ -1,5 +1,6 @@
 const CACHE_NAME = 'portfolio-cache-v1';
 const OFFLINE_URL = '/offline';
+const DEBUG = false; // Set to false in production
 
 const urlsToCache = [
   '/',
@@ -11,16 +12,29 @@ const urlsToCache = [
   // Add other static assets here
 ];
 
+// Helper function for logging
+const log = (...args) => {
+  if (DEBUG) {
+    console.log(...args);
+  }
+};
+
+const error = (...args) => {
+  if (DEBUG) {
+    console.error(...args);
+  }
+};
+
 // Install event - cache static assets
 self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME)
       .then((cache) => {
-        console.log('Opened cache');
+        log('Opened cache');
         return cache.addAll(urlsToCache);
       })
-      .catch((error) => {
-        console.error('Error caching static assets:', error);
+      .catch((err) => {
+        error('Error caching static assets:', err);
       })
   );
 });
@@ -32,6 +46,7 @@ self.addEventListener('activate', (event) => {
       return Promise.all(
         cacheNames.map((cacheName) => {
           if (cacheName !== CACHE_NAME) {
+            log('Deleting old cache:', cacheName);
             return caches.delete(cacheName);
           }
         })

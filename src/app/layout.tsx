@@ -3,6 +3,7 @@ import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
+import { Toaster } from "sonner";
 
 import { ThemeProvider } from "@/components/theme-provider";
 import { Header } from "@/components/layout/Header";
@@ -244,6 +245,7 @@ export default function RootLayout({
               <ShortcutsHelp />
             </RoutePrefetchProvider>
           </ServiceWorkerProvider>
+          <Toaster position="bottom-right" />
         </ThemeProvider>
         <Analytics />
         <SpeedInsights />

@@ -1,18 +1,22 @@
 'use client';
 
 import { useEffect } from 'react';
+import { toast } from 'sonner';
 
 export const useServiceWorker = () => {
   useEffect(() => {
     if (
       typeof window !== 'undefined' &&
-      'serviceWorker' in navigator
+      'serviceWorker' in navigator &&
+      process.env.NODE_ENV === 'production'
     ) {
       // Register service worker
       navigator.serviceWorker
         .register('/sw.js')
         .then((registration) => {
-          console.log('Service Worker registered with scope:', registration.scope);
+          if (process.env.NODE_ENV === 'development') {
+            console.log('Service Worker registered with scope:', registration.scope);
+          }
 
           // Check for updates
           registration.addEventListener('updatefound', () => {
@@ -20,26 +24,32 @@ export const useServiceWorker = () => {
             if (newWorker) {
               newWorker.addEventListener('statechange', () => {
                 if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
-                  // New content is available, show update prompt
-                  if (window.confirm('New content is available! Click OK to update.')) {
-                    window.location.reload();
-                  }
+                  // New content is available, show update toast
+                  toast.message('Update Available', {
+                    description: 'A new version is available. Click to update.',
+                    action: {
+                      label: 'Update',
+                      onClick: () => window.location.reload(),
+                    },
+                  });
                 }
               });
             }
           });
         })
         .catch((error) => {
-          console.error('Service Worker registration failed:', error);
+          if (process.env.NODE_ENV === 'development') {
+            console.error('Service Worker registration failed:', error);
+          }
         });
 
       // Handle offline/online events
       window.addEventListener('online', () => {
-        console.log('Application is online');
+        toast.success('You are back online!');
       });
 
       window.addEventListener('offline', () => {
-        console.log('Application is offline');
+        toast.error('You are offline. Some features may be limited.');
       });
     }
   }, []);
