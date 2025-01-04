@@ -23,7 +23,7 @@ const itemVariants = {
   visible: { opacity: 1, y: 0 },
 };
 
-const AboutSection = () => {
+export const AboutSection = () => {
   return (
     <section id="about" className="py-20 px-4">
       <GradientBackground variant="subtle">
@@ -104,6 +104,4 @@ const AboutSection = () => {
       </GradientBackground>
     </section>
   );
-};
-
-export default AboutSection; 
+}; 
