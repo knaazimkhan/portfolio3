@@ -151,6 +151,7 @@ export const skillCategories: SkillCategory[] = [
       },
     ],
   },
+  /* Design & UI/UX category - Commented out for potential future use
   {
     id: "design",
     name: "Design & UI/UX",
@@ -175,4 +176,5 @@ export const skillCategories: SkillCategory[] = [
       },
     ],
   },
+  */
 ]; 
