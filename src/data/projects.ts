@@ -187,6 +187,41 @@ export const projects: Project[] = [
     ],
   },
   {
+    id: "sokos-esports",
+    title: "Sokos Esports",
+    description: "A dynamic esports platform offering competitive gaming tournaments, live streaming, and community engagement features.",
+    longDescription: "An innovative esports platform that brings together competitive gamers, tournament organizers, and gaming enthusiasts. The platform features tournament management, live streaming integration, player profiles, and a comprehensive reward system, creating an engaging ecosystem for the gaming community.",
+    image: "/projects/sokos-esports/thumbnail.png",
+    technologies: [
+      "Next.js",
+      "TypeScript",
+      "TailwindCSS",
+      "Node.js",
+      "Responsive Design",
+      "i18n Internationalization"
+    ],
+    category: "gaming",
+    featured: true,
+    links: {
+      live: "https://esports.sokos.cafe",
+    },
+    completedAt: "2024-01",
+    highlights: [
+      "Tournament organization and management",
+      "Live streaming integration",
+      "Player profile and statistics tracking",
+      "Real-time match updates and scoring",
+      "Community features and social integration",
+      "Cross-platform accessibility",
+      "Reward system and leaderboards",
+      "Interactive tournament brackets",
+      "Multi-game support",
+      "Automated tournament scheduling",
+      "Team management features",
+      "Secure payment processing for entry fees"
+    ],
+  },
+  {
     id: "smart-meals",
     title: "Smart Meals",
     description: "A direct-to-home food delivery platform specializing in frozen ready-to-eat products with subscription-based service.",
