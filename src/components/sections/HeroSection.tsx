@@ -13,9 +13,9 @@ import { ImageWithLoading } from "@/components/ui/image-with-loading";
 import { useLoading } from "@/hooks/use-loading";
 
 const roles = [
-  "Frontend Developer",
+  "Software Engineer",
+  "Full Stack Developer",
   "React Specialist",
-  "UI/UX Enthusiast",
   "TypeScript Expert",
 ];
 
@@ -86,7 +86,7 @@ export const HeroSection = () => {
           <div className="space-y-8">
             <motion.div variants={itemVariants}>
               <h1 className="text-4xl md:text-6xl font-bold mb-4">
-                Hi, I'm <span className="text-primary">Your Name</span>
+                Hi, I'm <span className="text-primary">Naazim Khan</span>
               </h1>
               <div className="h-8 md:h-12">
                 <AnimatedText
