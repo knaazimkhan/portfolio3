@@ -1,14 +1,19 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { Skeleton } from "@/components/ui/skeleton";
 
 export const AboutSkeleton = () => {
   return (
-    <>
+    <div
+      className="w-full space-y-8"
+      aria-label="Loading about section"
+      role="progressbar"
+      aria-busy="true"
+    >
       {/* Title Skeleton */}
       <div className="space-y-4 mb-12">
-        <div className="h-8 w-48 bg-muted/60 rounded-lg animate-pulse" />
-        <div className="h-4 w-96 bg-muted/60 rounded-lg animate-pulse" />
+        <Skeleton className="h-8 w-48" />
+        <Skeleton className="h-4 w-96" />
       </div>
 
       {/* Content Grid */}
@@ -17,21 +22,21 @@ export const AboutSkeleton = () => {
         <div className="space-y-6">
           {/* Professional Overview Card */}
           <div className="p-6 bg-background/50 rounded-lg border backdrop-blur-sm">
-            <div className="h-6 w-48 bg-muted/60 rounded-lg animate-pulse mb-4" />
+            <Skeleton className="h-6 w-48 mb-4" />
             <div className="space-y-3">
-              <div className="h-4 w-full bg-muted/60 rounded-lg animate-pulse" />
-              <div className="h-4 w-5/6 bg-muted/60 rounded-lg animate-pulse" />
-              <div className="h-4 w-4/6 bg-muted/60 rounded-lg animate-pulse" />
+              <Skeleton className="h-4 w-full" />
+              <Skeleton className="h-4 w-5/6" />
+              <Skeleton className="h-4 w-4/6" />
             </div>
           </div>
 
           {/* Leadership Card */}
           <div className="p-6 bg-background/50 rounded-lg border backdrop-blur-sm">
-            <div className="h-6 w-48 bg-muted/60 rounded-lg animate-pulse mb-4" />
+            <Skeleton className="h-6 w-48 mb-4" />
             <div className="space-y-3">
-              <div className="h-4 w-full bg-muted/60 rounded-lg animate-pulse" />
-              <div className="h-4 w-5/6 bg-muted/60 rounded-lg animate-pulse" />
-              <div className="h-4 w-4/6 bg-muted/60 rounded-lg animate-pulse" />
+              <Skeleton className="h-4 w-full" />
+              <Skeleton className="h-4 w-5/6" />
+              <Skeleton className="h-4 w-4/6" />
             </div>
           </div>
         </div>
@@ -40,25 +45,25 @@ export const AboutSkeleton = () => {
         <div className="space-y-6">
           {/* Passion Card */}
           <div className="p-6 bg-background/50 rounded-lg border backdrop-blur-sm">
-            <div className="h-6 w-48 bg-muted/60 rounded-lg animate-pulse mb-4" />
+            <Skeleton className="h-6 w-48 mb-4" />
             <div className="space-y-3">
-              <div className="h-4 w-full bg-muted/60 rounded-lg animate-pulse" />
-              <div className="h-4 w-5/6 bg-muted/60 rounded-lg animate-pulse" />
-              <div className="h-4 w-4/6 bg-muted/60 rounded-lg animate-pulse" />
+              <Skeleton className="h-4 w-full" />
+              <Skeleton className="h-4 w-5/6" />
+              <Skeleton className="h-4 w-4/6" />
             </div>
           </div>
 
           {/* Technical Expertise Card */}
           <div className="p-6 bg-background/50 rounded-lg border backdrop-blur-sm">
-            <div className="h-6 w-48 bg-muted/60 rounded-lg animate-pulse mb-4" />
+            <Skeleton className="h-6 w-48 mb-4" />
             <div className="space-y-3">
-              <div className="h-4 w-full bg-muted/60 rounded-lg animate-pulse" />
-              <div className="h-4 w-5/6 bg-muted/60 rounded-lg animate-pulse" />
-              <div className="h-4 w-4/6 bg-muted/60 rounded-lg animate-pulse" />
+              <Skeleton className="h-4 w-full" />
+              <Skeleton className="h-4 w-5/6" />
+              <Skeleton className="h-4 w-4/6" />
             </div>
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }; 
