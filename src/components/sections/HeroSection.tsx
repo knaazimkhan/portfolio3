@@ -86,7 +86,7 @@ export const HeroSection = () => {
           <div className="space-y-8">
             <motion.div variants={itemVariants}>
               <h1 className="text-4xl md:text-6xl font-bold mb-4">
-                Hi, I'm <span className="text-primary">Naazim Khan</span>
+                Hi, I'm <span className="bg-gradient-to-r from-purple-600 to-blue-500 text-transparent bg-clip-text">Naazim Khan</span>
               </h1>
               <div className="h-8 md:h-12">
                 <AnimatedText
