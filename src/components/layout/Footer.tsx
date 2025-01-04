@@ -1,21 +1,26 @@
 import Link from "next/link";
-import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaTwitter, FaDiscord } from "react-icons/fa";
 
 const socialLinks = [
   {
     name: "GitHub",
-    href: "https://github.com/yourusername",
+    href: "https://github.com/knaazimkhan",
     icon: FaGithub,
   },
   {
     name: "LinkedIn",
-    href: "https://linkedin.com/in/yourusername",
+    href: "https://linkedin.com/in/naazimkhan",
     icon: FaLinkedin,
   },
   {
     name: "Twitter",
-    href: "https://twitter.com/yourusername",
+    href: "https://twitter.com/knaazimkhan",
     icon: FaTwitter,
+  },
+  {
+    name: "Discord",
+    href: "https://discord.com/users/knaazimkhan",
+    icon: FaDiscord,
   },
 ] as const;
 
@@ -24,7 +29,7 @@ export const Footer = () => {
     <footer className="w-full border-t bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-14 items-center justify-between">
         <p className="text-sm text-muted-foreground">
-          © {new Date().getFullYear()} Your Name. All rights reserved.
+          © {new Date().getFullYear()} Naazim Khan. All rights reserved.
         </p>
         <nav className="flex items-center gap-4" aria-label="Social media">
           {socialLinks.map((link) => {
