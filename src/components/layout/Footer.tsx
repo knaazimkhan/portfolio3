@@ -6,21 +6,25 @@ const socialLinks = [
     name: "GitHub",
     href: "https://github.com/knaazimkhan",
     icon: FaGithub,
+    hoverColor: "hover:text-[#333]",
   },
   {
     name: "LinkedIn",
     href: "https://linkedin.com/in/naazimkhan",
     icon: FaLinkedin,
+    hoverColor: "hover:text-[#0077b5]",
   },
   {
     name: "Twitter",
     href: "https://twitter.com/knaazimkhan",
     icon: FaTwitter,
+    hoverColor: "hover:text-[#1da1f2]",
   },
   {
     name: "Discord",
     href: "https://discord.com/users/knaazimkhan",
     icon: FaDiscord,
+    hoverColor: "hover:text-[#5865F2]",
   },
 ] as const;
 
@@ -40,7 +44,7 @@ export const Footer = () => {
                 href={link.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-muted-foreground hover:text-foreground transition-colors"
+                className={`text-muted-foreground transition-colors ${link.hoverColor}`}
                 aria-label={`Visit ${link.name}`}
               >
                 <Icon className="h-5 w-5" />
