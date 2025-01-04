@@ -103,6 +103,13 @@ export const HeroSection = () => {
               Building tomorrow's web, today.
             </motion.p>
 
+            <motion.p
+              variants={itemVariants}
+              className="text-base text-muted-foreground"
+            >
+              Passionate about creating innovative web solutions with modern technologies, specializing in scalable applications and exceptional user experiences.
+            </motion.p>
+
             <motion.div variants={itemVariants} className="flex gap-4">
               <Link
                 href="#projects"
