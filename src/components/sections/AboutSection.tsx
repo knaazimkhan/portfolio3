@@ -106,4 +106,4 @@ const AboutSection = () => {
   );
 };
 
-export { AboutSection }; 
+export default AboutSection; 
