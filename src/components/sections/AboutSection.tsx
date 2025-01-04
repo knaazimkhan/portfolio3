@@ -23,7 +23,7 @@ const itemVariants = {
   visible: { opacity: 1, y: 0 },
 };
 
-const AboutSection = () => {
+export const AboutSection = () => {
   return (
     <section id="about" className="py-20 px-4">
       <GradientBackground variant="subtle">
@@ -35,7 +35,6 @@ const AboutSection = () => {
             descriptionAnimation="scale"
             parallaxOffset={40}
           />
-
           <motion.div
             className="grid gap-8 lg:grid-cols-2 items-start"
             variants={containerVariants}
@@ -104,6 +103,4 @@ const AboutSection = () => {
       </GradientBackground>
     </section>
   );
-};
-
-export default AboutSection; 
+}; 
