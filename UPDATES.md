@@ -39,10 +39,15 @@
   - Passion for Development
   - Technical Expertise
 
+### Hero Section
+- Implemented hero section with modern design
+- Added personal introduction and role
+- Integrated smooth animations
+- Added call-to-action buttons
+
 ## 🔄 Pending Updates
 - Experience Section
 - Education Section
 - Skills Section
 - Testimonials Section
-- Blog Section
-- Hero Section 
+- Blog Section 
