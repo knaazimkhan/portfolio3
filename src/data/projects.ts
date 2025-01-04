@@ -183,4 +183,43 @@ export const projects: Project[] = [
       "Bilingual support (English & Arabic)"
     ],
   },
+  {
+    id: "smart-meals",
+    title: "Smart Meals",
+    description: "A direct-to-home food delivery platform specializing in frozen ready-to-eat products with subscription-based service.",
+    longDescription: "An innovative food delivery platform offering high-quality frozen products, including both vegetarian and non-vegetarian Halal-certified options. Features include subscription services, flexible delivery scheduling, and a comprehensive product management system.",
+    image: "/projects/smart-meals/thumbnail.png",
+    technologies: [
+      "Next.js",
+      "TypeScript",
+      "TailwindCSS",
+      "Node.js",
+      "Strapi CMS",
+      "MySQL",
+      "Express.js",
+      "REST API",
+      "JWT Authentication",
+      "Responsive Design",
+      "Payment Gateway Integration",
+      "Subscription Management",
+      "Order Management System"
+    ],
+    category: "web",
+    featured: true,
+    links: {
+      live: "https://smartmeals.kitchen",
+    },
+    completedAt: "2024-01",
+    highlights: [
+      "Direct-to-home delivery service",
+      "Subscription-based ordering system",
+      "Halal-certified product management",
+      "Flexible delivery scheduling",
+      "Multi-category product catalog",
+      "Secure payment processing",
+      "Real-time order tracking",
+      "Customer loyalty program",
+      "Business client portal"
+    ],
+  },
 ]; 
