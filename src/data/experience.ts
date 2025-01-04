@@ -75,5 +75,27 @@ export const experience: Experience[] = [
       "Developed comprehensive seller performance analysis system",
       "Implemented efficient data scraping solutions for multiple teams"
     ]
+  },
+  {
+    id: "4",
+    role: "Software Developer",
+    company: "Jlabs",
+    logo: "/companies/jlabs.jpeg",
+    date: "2016 - 2017",
+    location: "Saket, India",
+    description: "We are a group of engineering and business professionals looking to solve business issues through new and innovative technologies.",
+    technologies: ["JavaScript", "React", "Node.js", "Mobile Development", "Web Scraping"],
+    responsibilities: [
+      "Developed and maintained web dashboards and control panels",
+      "Built responsive mobile applications for various platforms",
+      "Implemented data scraping solutions for business requirements",
+      "Created user-friendly interfaces for complex data visualization",
+      "Collaborated with business teams to implement innovative solutions"
+    ],
+    achievements: [
+      "Successfully delivered multiple web and mobile applications",
+      "Implemented efficient data scraping and processing systems",
+      "Improved user experience through intuitive dashboard designs"
+    ]
   }
 ]; 
