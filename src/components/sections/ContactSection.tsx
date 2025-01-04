@@ -77,19 +77,19 @@ const socialLinks = [
   {
     name: "GitHub",
     icon: <FaGithub className="w-6 h-6" />,
-    url: "https://github.com/yourusername",
+    url: "https://github.com/knaazimkhan",
     color: "hover:text-[#333]",
   },
   {
     name: "LinkedIn",
     icon: <FaLinkedin className="w-6 h-6" />,
-    url: "https://linkedin.com/in/yourusername",
+    url: "https://linkedin.com/in/naazimkhan",
     color: "hover:text-[#0077b5]",
   },
   {
     name: "Twitter",
     icon: <FaTwitter className="w-6 h-6" />,
-    url: "https://twitter.com/yourusername",
+    url: "https://twitter.com/knaazimkhan",
     color: "hover:text-[#1da1f2]",
   },
   {
@@ -223,10 +223,10 @@ export const ContactSection = () => {
                       <div>
                         <h3 className="font-medium">Email</h3>
                         <a
-                          href="mailto:your.email@example.com"
+                          href="mailto:knaazimkhan@gmail.com"
                           className="text-muted-foreground hover:text-primary transition-colors"
                         >
-                          your.email@example.com
+                          knaazimkhan@gmail.com
                         </a>
                       </div>
                     </motion.div>
@@ -241,7 +241,7 @@ export const ContactSection = () => {
                       </div>
                       <div>
                         <h3 className="font-medium">Location</h3>
-                        <p className="text-muted-foreground">Your Location, Country</p>
+                        <p className="text-muted-foreground">Dubai, UAE (Current) | Thakurdwara, India (Home)</p>
                       </div>
                     </motion.div>
                   </HoverCard>
