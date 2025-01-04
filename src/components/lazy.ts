@@ -30,6 +30,4 @@ export const TestimonialsSection = dynamic(() => import('@/components/sections/T
 
 export const ContactSection = dynamic(() => import('@/components/sections/ContactSection').then(mod => mod.ContactSection), {
   ssr: true,
-});
-
-// ... existing exports ... 
+}); 
