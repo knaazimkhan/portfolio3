@@ -41,6 +41,17 @@ export const HeroSection = () => {
   const [isDeleting, setIsDeleting] = useState(false);
   const isLoading = useLoading();
 
+  const scrollToSection = (sectionId: string) => {
+    const section = document.getElementById(sectionId);
+    if (section) {
+      const offset = section.offsetTop - 80; // Adjust offset if you have a fixed header
+      window.scrollTo({
+        top: offset,
+        behavior: 'smooth'
+      });
+    }
+  };
+
   useEffect(() => {
     const role = roles[roleIndex];
     let timeout: NodeJS.Timeout;
@@ -114,10 +125,9 @@ export const HeroSection = () => {
               <Link
                 href="#projects"
                 className="inline-flex items-center justify-center rounded-md bg-primary px-6 py-3 text-sm font-medium text-primary-foreground ring-offset-background transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-                scroll={false}
                 onClick={(e) => {
                   e.preventDefault();
-                  document.querySelector('#projects')?.scrollIntoView({ behavior: 'smooth' });
+                  scrollToSection('projects');
                 }}
               >
                 View Projects
@@ -125,10 +135,9 @@ export const HeroSection = () => {
               <Link
                 href="#contact"
                 className="inline-flex items-center justify-center rounded-md border border-input bg-background px-6 py-3 text-sm font-medium ring-offset-background transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-                scroll={false}
                 onClick={(e) => {
                   e.preventDefault();
-                  document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' });
+                  scrollToSection('contact');
                 }}
               >
                 Contact Me
