@@ -7,35 +7,35 @@ export const AboutSection = dynamic(
 
 export const BlogSection = dynamic(
   () => import('@/components/sections/BlogSection').then((mod) => mod.BlogSection),
-  { loading: () => <div>Loading...</div> }
+  { ssr: true }
 );
 
 export const ProjectsSection = dynamic(
   () => import('@/components/sections/ProjectsSection').then((mod) => mod.ProjectsSection),
-  { loading: () => <div>Loading...</div> }
+  { ssr: true }
 );
 
 export const SkillsSection = dynamic(
   () => import('@/components/sections/SkillsSection').then((mod) => mod.SkillsSection),
-  { loading: () => <div>Loading...</div> }
+  { ssr: true }
 );
 
 export const ExperienceSection = dynamic(
   () => import('@/components/sections/ExperienceSection').then((mod) => mod.ExperienceSection),
-  { loading: () => <div>Loading...</div> }
+  { ssr: true }
 );
 
 export const EducationSection = dynamic(
   () => import('@/components/sections/EducationSection').then((mod) => mod.EducationSection),
-  { loading: () => <div>Loading...</div> }
+  { ssr: true }
 );
 
 export const TestimonialsSection = dynamic(
   () => import('@/components/sections/TestimonialsSection').then((mod) => mod.TestimonialsSection),
-  { loading: () => <div>Loading...</div> }
+  { ssr: true }
 );
 
 export const ContactSection = dynamic(
   () => import('@/components/sections/ContactSection').then((mod) => mod.ContactSection),
-  { loading: () => <div>Loading...</div> }
+  { ssr: true }
 ); 
