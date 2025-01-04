@@ -194,8 +194,8 @@ export const projects: Project[] = [
       "TypeScript",
       "TailwindCSS",
       "Node.js",
-      "Strapi CMS",
-      "MySQL",
+      "Payload CMS",
+      "MongoDB",
       "Express.js",
       "REST API",
       "JWT Authentication",
@@ -213,6 +213,7 @@ export const projects: Project[] = [
     highlights: [
       "Direct-to-home delivery service",
       "Subscription-based ordering system",
+      "Weekly meals plans with customizable options",
       "Halal-certified product management",
       "Flexible delivery scheduling",
       "Multi-category product catalog",
