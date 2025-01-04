@@ -98,9 +98,9 @@ export const HeroSection = () => {
 
             <motion.p
               variants={itemVariants}
-              className="text-xl md:text-2xl font-semibold bg-gradient-to-r from-primary/50 to-primary text-transparent bg-clip-text"
+              className="text-xl md:text-2xl font-semibold bg-gradient-to-r from-primary/50 to-primary text-transparent bg-clip-text relative"
             >
-              Building tomorrow's web, today.
+              "Building tomorrow's web, today."
             </motion.p>
 
             <motion.p
