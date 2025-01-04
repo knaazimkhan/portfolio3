@@ -13,6 +13,14 @@
   - Added project details, technologies, and thumbnail
   - Added Payload CMS v2 to tech stack
 
+### Education Section
+- Added complete academic history
+  - Added MCA from Jamia Millia Islamia University (2013-2016)
+  - Added PGDCA from Jamia Millia Islamia University (2011-2012)
+  - Added BSc (H) Chemistry from Jamia Millia Islamia University (2008-2011)
+- Implemented proper formatting and structure
+- Added institution logo and details
+
 ### Contact Section
 - Updated with real contact information
   - Email: knaazimkhan@gmail.com
@@ -47,7 +55,6 @@
 
 ## 🔄 Pending Updates
 - Experience Section
-- Education Section
 - Skills Section
 - Testimonials Section
 - Blog Section 
