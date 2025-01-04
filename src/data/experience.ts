@@ -56,24 +56,24 @@ export const experience: Experience[] = [
   },
   {
     id: "3",
-    role: "Frontend Developer",
-    company: "Creative Agency",
-    logo: "/companies/company3.png",
+    role: "Senior Associate BI",
+    company: "Noon",
+    logo: "/companies/noon.jpeg",
     date: "2017 - 2019",
-    location: "Los Angeles, CA",
-    description: "Created responsive and interactive web applications. Worked closely with designers to implement pixel-perfect interfaces.",
-    technologies: ["JavaScript", "React", "SASS", "Redux", "Webpack"],
+    location: "Gurugram, India",
+    description: "noon is a digital ecosystem of products and services that are built in the region.",
+    technologies: ["Python", "SQL", "Data Analysis", "Automation", "Web Scraping"],
     responsibilities: [
-      "Developed responsive and interactive user interfaces using React",
-      "Implemented state management solutions using Redux",
-      "Created reusable components and maintained component documentation",
-      "Optimized website performance and accessibility",
-      "Collaborated with designers to ensure pixel-perfect implementation"
+      "Managed and automated business reports as per requirements",
+      "Developed and maintained SMS panel with multi-language support",
+      "Analyzed seller performance metrics and created actionable insights",
+      "Implemented data scraping solutions for Marketing and Catalogue teams",
+      "Collaborated with cross-functional teams to optimize business processes"
     ],
     achievements: [
-      "Improved Google Lighthouse score from 65 to 95",
-      "Reduced page load time by 30% through optimization techniques",
-      "Created a design system that improved development efficiency by 40%"
+      "Successfully automated critical business reporting processes",
+      "Developed comprehensive seller performance analysis system",
+      "Implemented efficient data scraping solutions for multiple teams"
     ]
-  },
+  }
 ]; 
