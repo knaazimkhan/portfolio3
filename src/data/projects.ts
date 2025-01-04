@@ -197,6 +197,7 @@ export const projects: Project[] = [
       "TypeScript",
       "TailwindCSS",
       "Node.js",
+      "Payload CMS v2",
       "Responsive Design"
     ],
     category: "gaming",
