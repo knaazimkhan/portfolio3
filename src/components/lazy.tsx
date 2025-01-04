@@ -1,9 +1,8 @@
 import dynamic from 'next/dynamic';
-import { AboutSkeleton } from '@/components/ui/about-skeleton';
 
 export const AboutSection = dynamic(
   () => import('@/components/sections/AboutSection').then((mod) => mod.AboutSection),
-  { loading: () => <AboutSkeleton /> }
+  { ssr: true }
 );
 
 export const BlogSection = dynamic(

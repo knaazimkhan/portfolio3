@@ -6,6 +6,8 @@ import { HoverCard } from "@/components/ui/hover-card";
 import { ParallaxScroll } from "@/components/ui/parallax-scroll";
 import { GradientBackground } from "@/components/ui/gradient-background";
 import { SectionTitle } from '@/components/ui/section-title';
+import { AboutSkeleton } from '@/components/ui/about-skeleton';
+import { useLoading } from "@/hooks/use-loading";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -24,6 +26,12 @@ const itemVariants = {
 };
 
 export const AboutSection = () => {
+  const isLoading = useLoading();
+
+  if (isLoading) {
+    return <AboutSkeleton />;
+  }
+
   return (
     <section id="about" className="py-20 px-4">
       <GradientBackground variant="subtle">
