@@ -11,7 +11,7 @@ import {
   FaGithub, 
   FaLinkedin, 
   FaTwitter, 
-  FaDribbble,
+  FaDiscord,
   FaEnvelope,
   FaMapMarkerAlt
 } from "react-icons/fa";
@@ -93,10 +93,10 @@ const socialLinks = [
     color: "hover:text-[#1da1f2]",
   },
   {
-    name: "Dribbble",
-    icon: <FaDribbble className="w-6 h-6" />,
-    url: "https://dribbble.com/yourusername",
-    color: "hover:text-[#ea4c89]",
+    name: "Discord",
+    icon: <FaDiscord className="w-6 h-6" />,
+    url: "https://discord.com/users/knaazimkhan",
+    color: "hover:text-[#5865F2]",
   },
 ];
 
