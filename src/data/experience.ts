@@ -34,24 +34,24 @@ export const experience: Experience[] = [
   },
   {
     id: "2",
-    role: "Full Stack Developer",
-    company: "Digital Solutions",
-    logo: "/companies/company2.png",
-    date: "2019 - 2021",
-    location: "New York, NY",
-    description: "Developed and maintained full-stack applications using Node.js and React. Collaborated with cross-functional teams to deliver features on time.",
-    technologies: ["React", "Node.js", "PostgreSQL", "Express", "AWS"],
+    role: "Software Engineer",
+    company: "Enthusiast Global Group",
+    logo: "/companies/enthusiast.jpeg",
+    date: "2020 - 2022",
+    location: "Noida, India",
+    description: "Enthusiast Global Group is the India arm of the Beckett Group known for building the best products and services on the planet for collectors.",
+    technologies: ["React", "Node.js", "TypeScript", "Stripe", "PayPal", "Klaviyo"],
     responsibilities: [
-      "Developed and maintained full-stack web applications using React and Node.js",
-      "Designed and implemented RESTful APIs and database schemas",
-      "Integrated third-party services and APIs",
-      "Collaborated with UX designers to implement responsive designs",
-      "Managed AWS infrastructure and deployments"
+      "Led development of Dragon Shield web shop for Europe and USA markets",
+      "Implemented and maintained full-stack features using React and Node.js",
+      "Integrated multiple payment gateways including Stripe and PayPal",
+      "Implemented Klaviyo for marketing automation and customer engagement",
+      "Collaborated with international teams across different time zones"
     ],
     achievements: [
-      "Reduced API response time by 50% through caching and optimization",
-      "Implemented CI/CD pipeline that reduced deployment time by 70%",
-      "Developed reusable component library used across multiple projects"
+      "Successfully launched Dragon Shield web shop in multiple regions",
+      "Streamlined payment processing with multiple gateway integrations",
+      "Improved customer engagement through Klaviyo integration"
     ]
   },
   {
