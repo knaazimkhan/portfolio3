@@ -21,6 +21,16 @@
 - Implemented proper formatting and structure
 - Added institution logo and details
 
+### Experience Section
+- Added complete professional history
+  - Added Smart Chain (2022 - Present) as Software Engineer
+  - Added Enthusiast Global Group (2020 - 2022) as Software Engineer
+  - Added Noon (2017 - 2019) as Senior Associate BI
+  - Added Jlabs (2016 - 2017) as Software Developer
+- Added company descriptions and logos
+- Detailed responsibilities and achievements for each role
+- Added technology stacks and key accomplishments
+
 ### Contact Section
 - Updated with real contact information
   - Email: knaazimkhan@gmail.com
@@ -54,7 +64,6 @@
 - Added call-to-action buttons
 
 ## 🔄 Pending Updates
-- Experience Section
 - Skills Section
 - Testimonials Section
 - Blog Section 
