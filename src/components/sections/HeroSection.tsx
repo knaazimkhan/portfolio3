@@ -100,7 +100,7 @@ export const HeroSection = () => {
               variants={itemVariants}
               className="text-lg text-muted-foreground"
             >
-              Simple solutions for complex problems.
+              Building tomorrow's web, today.
             </motion.p>
 
             <motion.div variants={itemVariants} className="flex gap-4">
