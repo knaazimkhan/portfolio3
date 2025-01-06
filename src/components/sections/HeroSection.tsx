@@ -110,7 +110,7 @@ export const HeroSection = () => {
               variants={itemVariants}
               className="text-xl md:text-2xl font-semibold italic bg-gradient-to-r from-blue-500 to-purple-600 text-transparent bg-clip-text relative"
             >
-              "Building tomorrow&apos;s web, today."
+              &quot;Building tomorrow&apos;s web, today.&quot;
             </motion.p>
 
             <motion.p
