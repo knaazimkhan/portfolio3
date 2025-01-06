@@ -17,7 +17,7 @@ import { cn } from "@/lib/utils";
 import "./globals.css";
 
 const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://your-domain.com';
-const name = "Your Name";
+const name = "Naazim Khan";
 const title = `${name} - Full-stack Developer Portfolio`;
 const description = "Full-stack developer specializing in React, Next.js, and modern web technologies. Creating beautiful, responsive, and user-friendly web applications.";
 
