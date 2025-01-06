@@ -45,6 +45,7 @@ export const useKeyboardShortcuts = () => {
 
       if (matchingShortcut) {
         event.preventDefault();
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         const [_, path] = matchingShortcut;
         router.push(path);
         keys.length = 0;
