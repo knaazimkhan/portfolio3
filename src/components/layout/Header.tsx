@@ -6,6 +6,7 @@ import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Link } from "@/components/ui/link";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
+import Image from "next/image";
 
 const navigation = [
   { name: "Home", href: "/" as Route },
@@ -33,14 +34,21 @@ export const Header = () => {
         aria-label="Main navigation"
         role="navigation"
       >
-        <div className="flex lg:flex-1">
+        <div className="flex lg:flex-1 items-center">
+          <Image 
+            src="/profile/profile.jpeg"
+            alt="Naazim Khan"
+            width={35}
+            height={35}
+            className="rounded-full mr-2"
+          />
           <Link 
             href="/" 
             className="-m-1.5 p-1.5 text-2xl font-bold"
             aria-label="Go to homepage"
             exact
           >
-            Portfolio
+            Naazim Khan
           </Link>
         </div>
         <div className="flex lg:hidden">
@@ -95,7 +103,7 @@ export const Header = () => {
               aria-label="Go to homepage"
               exact
             >
-              Portfolio
+              Naazim Khan
             </Link>
             <button
               type="button"
