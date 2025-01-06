@@ -1,5 +1,4 @@
-import type { SkillCategory } from "@/types/skill";
-
+import type { IconName, SkillCategory } from "@/types/skill";
 export const skillCategories: SkillCategory[] = [
   {
     id: "frontend",
@@ -12,7 +11,7 @@ export const skillCategories: SkillCategory[] = [
         name: "React",
         level: "expert",
         yearsOfExperience: 4,
-        icon: "FaReact",
+        icon: "FaReact" as IconName,
         color: "#61DAFB",
       },
       {
@@ -20,7 +19,7 @@ export const skillCategories: SkillCategory[] = [
         name: "Next.js",
         level: "advanced",
         yearsOfExperience: 3,
-        icon: "SiNextdotjs",
+        icon: "SiNextdotjs" as IconName,
         color: "#000000",
       },
       {
@@ -28,7 +27,7 @@ export const skillCategories: SkillCategory[] = [
         name: "TypeScript",
         level: "advanced",
         yearsOfExperience: 3,
-        icon: "SiTypescript",
+        icon: "SiTypescript" as IconName,
         color: "#3178C6",
       },
       {
@@ -36,7 +35,7 @@ export const skillCategories: SkillCategory[] = [
         name: "JavaScript",
         level: "expert",
         yearsOfExperience: 5,
-        icon: "SiJavascript",
+        icon: "SiJavascript" as IconName,
         color: "#F7DF1E",
       },
       {
@@ -44,10 +43,11 @@ export const skillCategories: SkillCategory[] = [
         name: "Tailwind CSS",
         level: "advanced",
         yearsOfExperience: 2,
-        icon: "SiTailwindcss",
+        icon: "SiTailwindcss" as IconName,
         color: "#06B6D4",
       },
     ],
+    // details: ["Expertise in building responsive and interactive user interfaces using modern frontend technologies."],
   },
   {
     id: "backend",
@@ -60,7 +60,7 @@ export const skillCategories: SkillCategory[] = [
         name: "Node.js",
         level: "advanced",
         yearsOfExperience: 4,
-        icon: "FaNode",
+        icon: "FaNode" as IconName,
         color: "#339933",
       },
       {
@@ -68,10 +68,11 @@ export const skillCategories: SkillCategory[] = [
         name: "Prisma",
         level: "intermediate",
         yearsOfExperience: 2,
-        icon: "SiPrisma",
+        icon: "SiPrisma" as IconName,
         color: "#2D3748",
       },
     ],
+    // details: ["Expertise in building scalable server-side applications."],
   },
   {
     id: "database",
@@ -84,7 +85,7 @@ export const skillCategories: SkillCategory[] = [
         name: "MongoDB",
         level: "advanced",
         yearsOfExperience: 3,
-        icon: "SiMongodb",
+        icon: "SiMongodb" as IconName,
         color: "#47A248",
       },
       {
@@ -92,10 +93,11 @@ export const skillCategories: SkillCategory[] = [
         name: "PostgreSQL",
         level: "intermediate",
         yearsOfExperience: 2,
-        icon: "SiPostgresql",
+        icon: "SiPostgresql" as IconName,
         color: "#4169E1",
       },
     ],
+    // details: ["Expertise in managing and optimizing data storage."],
   },
   {
     id: "devops",
@@ -108,7 +110,7 @@ export const skillCategories: SkillCategory[] = [
         name: "Git",
         level: "advanced",
         yearsOfExperience: 5,
-        icon: "SiGit",
+        icon: "SiGit" as IconName,
         color: "#F05032",
       },
       {
@@ -116,7 +118,7 @@ export const skillCategories: SkillCategory[] = [
         name: "Docker",
         level: "intermediate",
         yearsOfExperience: 2,
-        icon: "SiDocker",
+        icon: "SiDocker" as IconName,
         color: "#2496ED",
       },
       {
@@ -124,10 +126,11 @@ export const skillCategories: SkillCategory[] = [
         name: "AWS",
         level: "intermediate",
         yearsOfExperience: 2,
-        icon: "FaAws",
+        icon: "FaAws" as IconName,
         color: "#232F3E",
       },
     ],
+    // details: ["Expertise in automating and optimizing development workflows."],
   },
   /* Design & UI/UX category - Commented out for potential future use
   {
@@ -141,7 +144,7 @@ export const skillCategories: SkillCategory[] = [
         name: "Figma",
         level: "intermediate",
         yearsOfExperience: 2,
-        icon: "SiFigma",
+        icon: "SiFigma" as IconName,
         color: "#F24E1E",
       },
       {
@@ -149,7 +152,7 @@ export const skillCategories: SkillCategory[] = [
         name: "Framer Motion",
         level: "advanced",
         yearsOfExperience: 2,
-        icon: "SiFramer",
+        icon: "SiFramer" as IconName,
         color: "#0055FF",
       },
     ],

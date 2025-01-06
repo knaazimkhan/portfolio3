@@ -8,8 +8,9 @@ import { GradientBackground } from "@/components/ui/gradient-background";
 import { skillCategories } from "@/data/skills";
 import * as Icons from "react-icons/fa";
 import * as SiIcons from "react-icons/si";
+import { IconName, Skill, SkillCategory } from "@/types/skill";
 
-const getIcon = (iconName: string) => {
+const getIcon = (iconName: IconName) => {
   const IconComponent = (Icons as any)[iconName] || (SiIcons as any)[iconName];
   return IconComponent ? <IconComponent /> : null;
 };
@@ -29,7 +30,7 @@ const getLevelColor = (level: string) => {
   }
 };
 
-const SkillCard = ({ category, index }: { category: any; index: number }) => (
+const SkillCard = ({ category, index }: { category: SkillCategory; index: number }) => (
   <ScrollAnimation
     animation="fade"
     delay={index * 0.1}
@@ -41,7 +42,7 @@ const SkillCard = ({ category, index }: { category: any; index: number }) => (
           <ScrollAnimation animation="slide" delay={index * 0.1}>
             <div className="flex items-center gap-3 mb-4">
               <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary transition-transform duration-300 group-hover:scale-110">
-                {getIcon(category.icon)}
+                {getIcon(category.icon as IconName)}
               </div>
               <div>
                 <h3 className="font-semibold">{category.name}</h3>
@@ -53,7 +54,7 @@ const SkillCard = ({ category, index }: { category: any; index: number }) => (
           </ScrollAnimation>
 
           <div className="grid gap-3">
-            {category.skills.map((skill: any, skillIndex: number) => (
+            {category.skills.map((skill: Skill, skillIndex: number) => (
               <ScrollAnimation
                 key={skill.id}
                 animation="slide"
