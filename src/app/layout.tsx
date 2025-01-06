@@ -112,7 +112,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title,
     description,
-    creator: "@your_twitter",
+    creator: "@knaazimkhan",
     images: [ogImageUrl],
   },
   icons: {
