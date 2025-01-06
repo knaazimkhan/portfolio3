@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { FaGraduationCap, FaCalendar, FaMapMarkerAlt, FaBriefcase } from "react-icons/fa";
+import { FaCalendar, FaMapMarkerAlt, FaBriefcase } from "react-icons/fa";
 import { ScrollAnimation } from "@/components/ui/scroll-animation";
 import { GradientBackground } from "@/components/ui/gradient-background";
 import { Badge } from "@/components/ui/badge";

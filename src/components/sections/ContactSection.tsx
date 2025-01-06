@@ -17,7 +17,7 @@ import {
 } from "react-icons/fa";
 import { ScrollAnimation } from "@/components/ui/scroll-animation";
 import { HoverCard } from "@/components/ui/hover-card";
-import { AnimatedText } from "@/components/ui/animated-text";
+// import { AnimatedText } from "@/components/ui/animated-text";
 import { ParallaxScroll } from "@/components/ui/parallax-scroll";
 import { GradientBackground } from "@/components/ui/gradient-background";
 import { ContactFormSkeleton } from "@/components/ui/contact-form-skeleton";

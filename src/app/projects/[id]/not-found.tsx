@@ -5,7 +5,7 @@ export default function ProjectNotFound() {
     <main className="flex flex-col items-center justify-center min-h-[60vh] px-4">
       <h1 className="text-4xl font-bold mb-4">Project Not Found</h1>
       <p className="text-muted-foreground text-center mb-8">
-        Sorry, the project you're looking for doesn't exist or has been removed.
+        Sorry, the project you&apos;re looking for doesn&apos;t exist or has been removed.
       </p>
       <Link
         href="/#projects"

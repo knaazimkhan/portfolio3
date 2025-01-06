@@ -1,26 +1,4 @@
 import type { SkillCategory } from "@/types/skill";
-import {
-  FaReact,
-  FaNode,
-  FaDatabase,
-  FaTools,
-  FaCode,
-  FaPalette,
-  FaAws,
-} from "react-icons/fa";
-import {
-  SiNextdotjs,
-  SiTypescript,
-  SiJavascript,
-  SiTailwindcss,
-  SiPrisma,
-  SiMongodb,
-  SiPostgresql,
-  SiGit,
-  SiDocker,
-  SiFigma,
-  SiFramer,
-} from "react-icons/si";
 
 export const skillCategories: SkillCategory[] = [
   {

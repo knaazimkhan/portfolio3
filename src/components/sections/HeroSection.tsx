@@ -3,8 +3,8 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ScrollAnimation } from "@/components/ui/scroll-animation";
-import { HoverCard } from "@/components/ui/hover-card";
+// import { ScrollAnimation } from "@/components/ui/scroll-animation";
+// import { HoverCard } from "@/components/ui/hover-card";
 import { AnimatedText } from "@/components/ui/animated-text";
 import { ParallaxScroll } from "@/components/ui/parallax-scroll";
 import { GradientBackground } from "@/components/ui/gradient-background";
@@ -96,7 +96,7 @@ export const HeroSection = () => {
           <div className="space-y-8">
             <motion.div variants={itemVariants}>
               <h1 className="text-4xl md:text-6xl font-bold mb-4">
-                Hi, I'm <span className="bg-gradient-to-r from-purple-600 to-blue-500 text-transparent bg-clip-text">Naazim Khan</span>
+                Hi, I&apos;m <span className="bg-gradient-to-r from-purple-600 to-blue-500 text-transparent bg-clip-text">Naazim Khan</span>
               </h1>
               <div className="h-8 md:h-12">
                 <AnimatedText
@@ -110,7 +110,7 @@ export const HeroSection = () => {
               variants={itemVariants}
               className="text-xl md:text-2xl font-semibold italic bg-gradient-to-r from-blue-500 to-purple-600 text-transparent bg-clip-text relative"
             >
-              "Building tomorrow's web, today."
+              "Building tomorrow&apos;s web, today."
             </motion.p>
 
             <motion.p

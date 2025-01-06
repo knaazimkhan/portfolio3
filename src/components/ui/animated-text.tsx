@@ -7,7 +7,7 @@ interface AnimatedTextProps {
   text: string | string[];
   animation?: "bounce" | "wave" | "slide" | "fade";
   className?: string;
-  delay?: number;
+  // delay?: number;
 }
 
 const animations = {
@@ -66,7 +66,7 @@ export const AnimatedText = ({
   text,
   animation = "bounce",
   className,
-  delay = 0,
+  // delay = 0,
 }: AnimatedTextProps) => {
   const words = Array.isArray(text) ? text : text.split(" ");
 

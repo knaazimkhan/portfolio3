@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ScrollAnimation } from "@/components/ui/scroll-animation";
+// import { ScrollAnimation } from "@/components/ui/scroll-animation";
 import { HoverCard } from "@/components/ui/hover-card";
 import { ParallaxScroll } from "@/components/ui/parallax-scroll";
 import { GradientBackground } from "@/components/ui/gradient-background";
@@ -95,7 +95,7 @@ export const AboutSection = () => {
                       Passion for Development
                     </h3>
                     <p className="text-muted-foreground leading-relaxed">
-                      Web development calls to all my passions, it incorporates creativity and problem solving and I'm allowed to break it to improve the code (in a separate Git branch, of course). Proficient in developing innovative solutions for e-commerce and product or service-based industries.
+                      Web development calls to all my passions, it incorporates creativity and problem solving and I&apos;m allowed to break it to improve the code (in a separate Git branch, of course). Proficient in developing innovative solutions for e-commerce and product or service-based industries.
                     </p>
                   </div>
                 </HoverCard>

@@ -5,35 +5,35 @@ import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { FaQuoteLeft, FaStar, FaChevronLeft, FaChevronRight, FaMapMarkerAlt, FaCalendar, FaExternalLinkAlt } from "react-icons/fa";
 import { ScrollAnimation } from "@/components/ui/scroll-animation";
-import { AnimatedText } from "@/components/ui/animated-text";
-import { ParallaxScroll } from "@/components/ui/parallax-scroll";
+// import { AnimatedText } from "@/components/ui/animated-text";
+// import { ParallaxScroll } from "@/components/ui/parallax-scroll";
 import { GradientBackground } from "@/components/ui/gradient-background";
 import { testimonials } from "@/data/testimonials";
 import { SectionTitle } from '@/components/ui/section-title';
 import { TestimonialsSkeleton } from "@/components/ui/testimonials-skeleton";
 import { useLoading } from "@/hooks/use-loading";
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.2,
-    },
-  },
-};
+// const containerVariants = {
+//   hidden: { opacity: 0 },
+//   visible: {
+//     opacity: 1,
+//     transition: {
+//       staggerChildren: 0.2,
+//     },
+//   },
+// };
 
-const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      type: "spring",
-      stiffness: 100,
-    },
-  },
-};
+// const itemVariants = {
+//   hidden: { opacity: 0, y: 20 },
+//   visible: {
+//     opacity: 1,
+//     y: 0,
+//     transition: {
+//       type: "spring",
+//       stiffness: 100,
+//     },
+//   },
+// };
 
 const slideVariants = {
   enter: (direction: number) => ({
