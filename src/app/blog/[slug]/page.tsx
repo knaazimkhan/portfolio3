@@ -9,13 +9,12 @@ import { ParallaxScroll } from '@/components/ui/parallax-scroll';
 import { getBlogPost, getBlogPosts } from '@/lib/mdx';
 
 interface BlogPostPageProps {
-  params: {
-    slug: string;
-  };
+  params: Promise<{ slug: string }>;
 }
 
 export async function generateMetadata({ params }: BlogPostPageProps): Promise<Metadata> {
-  const post = await getBlogPost(params.slug);
+  const { slug } = await Promise.resolve(params);
+  const post = await getBlogPost(slug);
 
   if (!post) {
     return {
@@ -53,7 +52,8 @@ export async function generateStaticParams() {
 }
 
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
-  const post = await getBlogPost(params.slug);
+  const { slug } = await Promise.resolve(params);
+  const post = await getBlogPost(slug);
 
   if (!post) {
     notFound();
