@@ -7,7 +7,7 @@ import { GradientBackground } from "@/components/ui/gradient-background";
 import { Badge } from "@/components/ui/badge";
 import { HoverCard, HoverCardTrigger, HoverCardContent } from "@/components/ui/hover-card";
 import { ExperienceTimelineSkeleton } from "@/components/ui/experience-timeline-skeleton";
-import { experience } from "@/data/experience";
+import { experiences } from "@/data/experiences";
 import Image from "next/image";
 import { Experience } from "@/types/experience";
 
@@ -190,7 +190,7 @@ export const ExperienceSection = () => {
             {/* Timeline Line */}
             <div className="absolute left-0 md:left-1/2 transform md:-translate-x-1/2 top-0 bottom-0 w-px bg-border" />
 
-            {experience.map((item, index) => (
+            {experiences.map((item, index) => (
               <ExperienceCard
                 key={item.id}
                 item={item}

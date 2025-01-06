@@ -1,6 +1,6 @@
 import { Education } from "@/types/education";
 
-export const education: Education[] = [
+export const educations: Education[] = [
   {
     id: "1",
     institution: "Jamia Millia Islamia University",

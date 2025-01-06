@@ -7,7 +7,7 @@ import { GradientBackground } from "@/components/ui/gradient-background";
 import { Badge } from "@/components/ui/badge";
 import { HoverCard, HoverCardTrigger, HoverCardContent } from "@/components/ui/hover-card";
 import { EducationCardSkeleton } from "@/components/ui/education-card-skeleton";
-import { education } from "@/data/education";
+import { educations } from "@/data/educations";
 import Image from "next/image";
 import { Education } from "@/types/education";
 
@@ -158,7 +158,7 @@ export const EducationSection = () => {
           </ScrollAnimation>
 
           <div className="grid gap-8 md:grid-cols-2">
-            {education.map((edu, index) => (
+            {educations.map((edu, index) => (
               <EducationCard key={edu.id} edu={edu} index={index} />
             ))}
           </div>

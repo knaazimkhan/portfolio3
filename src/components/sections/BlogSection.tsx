@@ -10,7 +10,7 @@ import { FaCalendar, FaClock, FaSearch } from "react-icons/fa";
 // import { ParallaxScroll } from "@/components/ui/parallax-scroll";
 import { Badge } from "@/components/ui/badge";
 import { HoverCard } from "@/components/ui/hover-card";
-import { blogPosts } from "@/data/blog";
+import { blogPosts } from "@/data/blogs";
 import { BlogPost, BlogCategory } from "@/types/blog";
 import { SectionTitle } from '@/components/ui/section-title';
 import { BlogSectionSkeleton } from "@/components/ui/blog-section-skeleton";
