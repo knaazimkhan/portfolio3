@@ -42,7 +42,7 @@ export const AboutSection = () => {
 
   return (
     <section id="about" className="py-20 px-4">
-      <GradientBackground variant="subtle">
+      <GradientBackground variant="subtle" className="py-5">
         <div className="container mx-auto max-w-6xl">
           <SectionTitle
             title="About Me"

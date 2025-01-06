@@ -109,7 +109,7 @@ export const TestimonialsSection = () => {
 
   return (
     <section id="testimonials" className="py-20 px-4">
-      <GradientBackground variant="subtle">
+      <GradientBackground variant="subtle" className="py-5">
         <div className="container mx-auto max-w-6xl">
           <ScrollAnimation animation="slide" className="text-center mb-12">
             <SectionTitle

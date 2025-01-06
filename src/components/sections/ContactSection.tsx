@@ -196,7 +196,7 @@ export const ContactSection = () => {
 
   return (
     <section id="contact" className="py-20 px-4">
-      <GradientBackground variant="vibrant">
+      <GradientBackground variant="vibrant" className="py-5">
         <div className="container mx-auto max-w-6xl">
           <SectionTitle
             title="Get in Touch"

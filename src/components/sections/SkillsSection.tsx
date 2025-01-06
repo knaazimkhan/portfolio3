@@ -141,8 +141,8 @@ export const SkillsSection = () => {
   }
 
   return (
-    <section id="skills" className="py-16 px-4 md:px-6">
-      <GradientBackground>
+    <section id="skills" className="py-20 px-4 md:px-6">
+      <GradientBackground className="py-5">
         <div className="max-w-7xl mx-auto">
           <ScrollAnimation animation="slide" className="text-center mb-12">
             <h2 className="text-3xl font-bold mb-4">Skills & Expertise</h2>
