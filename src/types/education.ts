@@ -9,6 +9,7 @@ export interface Education {
   endDate: string | "Present";
   grade?: string;
   description: string[];
+  focusAreas?: string[];
   activities?: string[];
   achievements: string[];
 } 

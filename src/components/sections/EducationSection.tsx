@@ -9,8 +9,9 @@ import { HoverCard, HoverCardTrigger, HoverCardContent } from "@/components/ui/h
 import { EducationCardSkeleton } from "@/components/ui/education-card-skeleton";
 import { education } from "@/data/education";
 import Image from "next/image";
+import { Education } from "@/types/education";
 
-const EducationCard = ({ edu, index }: { edu: any; index: number }) => (
+const EducationCard = ({ edu, index }: { edu: Education; index: number }) => (
   <ScrollAnimation
     animation="fade"
     delay={index * 0.1}
@@ -98,7 +99,7 @@ const EducationCard = ({ edu, index }: { edu: any; index: number }) => (
           )}
 
           {/* Activities */}
-          {edu.activities?.length > 0 && (
+          {edu.activities && edu.activities.length > 0 && (
             <div className="space-y-2">
               <div className="flex items-center gap-2 font-medium">
                 <FaUsers className="h-4 w-4 text-primary" />
