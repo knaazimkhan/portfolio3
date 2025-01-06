@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 
 const SHORTCUTS = {
@@ -13,8 +13,8 @@ const SHORTCUTS = {
 
 export const useKeyboardShortcuts = () => {
   const router = useRouter();
-  let keys: string[] = [];
-  let timeout: NodeJS.Timeout;
+  const keys: string[] = [];
+  const timeout = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
@@ -30,9 +30,11 @@ export const useKeyboardShortcuts = () => {
       keys.push(event.key.toLowerCase());
       
       // Reset keys after 1 second of no keypresses
-      clearTimeout(timeout);
-      timeout = setTimeout(() => {
-        keys = [];
+      if (timeout.current) {
+        clearTimeout(timeout.current);
+      }
+      timeout.current = setTimeout(() => {
+        keys.length = 0;
       }, 1000);
 
       // Check if current key combination matches any shortcuts
@@ -45,14 +47,16 @@ export const useKeyboardShortcuts = () => {
         event.preventDefault();
         const [_, path] = matchingShortcut;
         router.push(path);
-        keys = [];
+        keys.length = 0;
       }
     };
 
     window.addEventListener('keydown', handleKeyDown);
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
-      clearTimeout(timeout);
+      if (timeout.current) {
+        clearTimeout(timeout.current);
+      }
     };
   }, [router]);
 
