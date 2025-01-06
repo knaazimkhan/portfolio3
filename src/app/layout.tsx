@@ -37,9 +37,9 @@ const jsonLd = {
   description,
   image: ogImageUrl,
   sameAs: [
-    "https://github.com/yourusername",
-    "https://linkedin.com/in/yourusername",
-    "https://twitter.com/yourusername"
+    "https://github.com/knaazimkhan",
+    "https://linkedin.com/in/naazimkhan",
+    "https://twitter.com/knaazimkhan"
   ],
   knowsAbout: [
     "Web Development",
