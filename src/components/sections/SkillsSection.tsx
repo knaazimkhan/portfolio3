@@ -11,7 +11,7 @@ import * as SiIcons from "react-icons/si";
 import { IconName, Skill, SkillCategory } from "@/types/skill";
 
 const getIcon = (iconName: IconName) => {
-  const IconComponent = (Icons as any)[iconName] || (SiIcons as any)[iconName];
+  const IconComponent = (Icons as Record<string, React.ComponentType<unknown>>)[iconName] || (SiIcons as Record<string, React.ComponentType<unknown>>)[iconName];
   return IconComponent ? <IconComponent /> : null;
 };
 
