@@ -59,7 +59,7 @@ const swipePower = (offset: number, velocity: number) => {
 
 export const TestimonialsSection = () => {
   const [[page, direction], setPage] = useState([0, 0]);
-  const [autoplay, setAutoplay] = useState(true);
+  // const [autoplay, setAutoplay] = useState(true);
   const isLoading = useLoading();
 
   const testimonialIndex = Math.abs(page % testimonials.length);
@@ -82,14 +82,18 @@ export const TestimonialsSection = () => {
   }, [paginate]);
 
   useEffect(() => {
-    if (!autoplay) return;
+    // if (!autoplay) return;
 
     const timer = setInterval(() => {
       paginate(1);
     }, 5000);
 
     return () => clearInterval(timer);
-  }, [autoplay, paginate]);
+  }, [paginate]);
+
+  // const toggleAutoplay = () => {
+  //   setAutoplay((prev) => !prev);
+  // };
 
   if (isLoading) {
     return (
@@ -224,6 +228,9 @@ export const TestimonialsSection = () => {
               </button>
             </div>
           </div>
+          {/* <button onClick={toggleAutoplay} className="mt-4">
+            {autoplay ? "Stop Autoplay" : "Start Autoplay"}
+          </button> */}
         </div>
       </GradientBackground>
     </section>
