@@ -9,8 +9,9 @@ import { HoverCard, HoverCardTrigger, HoverCardContent } from "@/components/ui/h
 import { ExperienceTimelineSkeleton } from "@/components/ui/experience-timeline-skeleton";
 import { experience } from "@/data/experience";
 import Image from "next/image";
+import { Experience } from "@/types/experience";
 
-const ExperienceCard = ({ item, index, isEven }: { item: any; index: number; isEven: boolean }) => (
+const ExperienceCard = ({ item, index, isEven }: { item: Experience; index: number; isEven: boolean }) => (
   <ScrollAnimation
     animation="fade"
     delay={index * 0.1}
