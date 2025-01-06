@@ -33,7 +33,7 @@ export const Footer = () => {
     <footer className="w-full border-t bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-14 items-center justify-between">
         <p className="text-sm text-muted-foreground">
-          © {new Date().getFullYear()} Naazim Khan. All rights reserved.
+          © 2024 Naazim Khan. All rights reserved.
         </p>
         <nav className="flex items-center gap-4" aria-label="Social media">
           {socialLinks.map((link) => {
