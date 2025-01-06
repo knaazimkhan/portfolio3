@@ -12,8 +12,6 @@ interface BlogPostPageProps {
   params: Promise<{ slug: string }>;
 }
 
-export const runtime = 'edge';
-
 export async function generateMetadata({ params }: BlogPostPageProps): Promise<Metadata> {
   const { slug } = await Promise.resolve(params);
   const post = await getBlogPost(slug);
