@@ -9,8 +9,8 @@ import { AnimatedText } from "@/components/ui/animated-text";
 import { ParallaxScroll } from "@/components/ui/parallax-scroll";
 import Link from "next/link";
 
-interface Props {
-  params: { id: string };
+interface ProjectPageProps {
+  params: Promise<{ id: string }>;
 }
 
 async function getProject(id: string) {
@@ -19,8 +19,8 @@ async function getProject(id: string) {
   return project;
 }
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const id = await Promise.resolve(params.id);
+export async function generateMetadata({ params }: ProjectPageProps): Promise<Metadata> {
+  const { id } = await Promise.resolve(params);
   const project = await getProject(id);
   if (!project) return {};
 
@@ -30,8 +30,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-export default async function ProjectPage({ params }: Props) {
-  const id = await Promise.resolve(params.id);
+export default async function ProjectPage({ params }: ProjectPageProps) {
+  const { id } = await Promise.resolve(params);
   const project = await getProject(id);
   if (!project) notFound();
 
