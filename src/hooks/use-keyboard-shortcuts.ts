@@ -13,7 +13,7 @@ const SHORTCUTS = {
 
 export const useKeyboardShortcuts = () => {
   const router = useRouter();
-  const keys: string[] = [];
+  const keys = useRef<string[]>([]);
   const timeout = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
@@ -27,28 +27,27 @@ export const useKeyboardShortcuts = () => {
       }
 
       // Add key to keys array
-      keys.push(event.key.toLowerCase());
+      keys.current.push(event.key.toLowerCase());
       
       // Reset keys after 1 second of no keypresses
       if (timeout.current) {
         clearTimeout(timeout.current);
       }
       timeout.current = setTimeout(() => {
-        keys.length = 0;
+        keys.current.length = 0;
       }, 1000);
 
       // Check if current key combination matches any shortcuts
-      const currentCombo = keys.join(' ');
+      const currentCombo = keys.current.join(' ');
       const matchingShortcut = Object.entries(SHORTCUTS).find(([shortcut]) =>
         currentCombo.endsWith(shortcut)
       );
 
       if (matchingShortcut) {
         event.preventDefault();
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         const [_, path] = matchingShortcut;
         router.push(path);
-        keys.length = 0;
+        keys.current.length = 0;
       }
     };
 
