@@ -7,7 +7,7 @@ import { readFileSync, readdirSync } from 'fs';
 import { join } from 'path';
 import matter from 'gray-matter';
 import { ReactNode } from 'react';
-import { Node, Element } from 'hast';
+import { Element } from 'hast';
 
 const postsDirectory = join(process.cwd(), 'content/blog');
 
@@ -71,19 +71,15 @@ export async function getBlogPost(slug: string): Promise<BlogPost | null> {
               {
                 theme: 'github-dark',
                 onVisitLine(node: Element) {
-                  if (node.children && node.children.length === 0) {
+                  if (node.children.length === 0) {
                     node.children = [{ type: 'text', value: ' ' }];
                   }
                 },
                 onVisitHighlightedLine(node: Element) {
-                  if (node.properties && node.properties.className) {
-                    node.properties.className = Array.isArray(node.properties.className) ? [...node.properties.className, 'line--highlighted'] : ['line--highlighted'];
-                  }
+                  node.properties.className = ['line--highlighted'];
                 },
                 onVisitHighlightedWord(node: Element) {
-                  if (node.properties && node.properties.className) {
-                    node.properties.className = ['word--highlighted'];
-                  }
+                  node.properties.className = ['word--highlighted'];
                 },
               },
             ],
