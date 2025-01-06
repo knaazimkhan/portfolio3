@@ -7,7 +7,7 @@ interface LazyLoadOptions {
   loading?: React.ReactNode;
 }
 
-export function lazyLoad<T extends React.ComponentType<any>>(
+export function lazyLoad<T extends React.ComponentType<React.PropsWithChildren<unknown>>>(
   importFn: () => Promise<{ default: T }>,
   options: LazyLoadOptions = {}
 ) {
