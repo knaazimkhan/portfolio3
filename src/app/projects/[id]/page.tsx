@@ -13,6 +13,8 @@ interface ProjectPageProps {
   params: Promise<{ id: string }>;
 }
 
+export const runtime = 'edge';
+
 async function getProject(id: string) {
   const project = projects.find((p) => p.id === id);
   if (!project) return null;
