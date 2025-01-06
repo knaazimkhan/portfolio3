@@ -7,6 +7,7 @@ import { readFileSync, readdirSync } from 'fs';
 import { join } from 'path';
 import matter from 'gray-matter';
 import { ReactNode } from 'react';
+import { Node, Element } from 'hast';
 
 const postsDirectory = join(process.cwd(), 'content/blog');
 
@@ -69,18 +70,20 @@ export async function getBlogPost(slug: string): Promise<BlogPost | null> {
               rehypePrettyCode,
               {
                 theme: 'github-dark',
-                onVisitLine(node: any) {
-                  // Prevent lines from collapsing in `display: grid` mode, and
-                  // allow empty lines to be copy/pasted
-                  if (node.children.length === 0) {
+                onVisitLine(node: Element) {
+                  if (node.children && node.children.length === 0) {
                     node.children = [{ type: 'text', value: ' ' }];
                   }
                 },
-                onVisitHighlightedLine(node: any) {
-                  node.properties.className.push('line--highlighted');
+                onVisitHighlightedLine(node: Element) {
+                  if (node.properties && node.properties.className) {
+                    node.properties.className = Array.isArray(node.properties.className) ? [...node.properties.className, 'line--highlighted'] : ['line--highlighted'];
+                  }
                 },
-                onVisitHighlightedWord(node: any) {
-                  node.properties.className = ['word--highlighted'];
+                onVisitHighlightedWord(node: Element) {
+                  if (node.properties && node.properties.className) {
+                    node.properties.className = ['word--highlighted'];
+                  }
                 },
               },
             ],
