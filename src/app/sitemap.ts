@@ -2,7 +2,7 @@ import { MetadataRoute } from 'next';
 import { projects } from '@/data/projects';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://your-domain.com';
+  const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://naazimkhan.com';
 
   // Static routes
   const staticRoutes = [
