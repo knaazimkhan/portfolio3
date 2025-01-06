@@ -38,6 +38,16 @@ export const projects: Project[] = [
       "Analytics and customer insights",
       "Multi-platform support (Web, Tablet, Mobile)",
     ],
+    challenges: {
+      technical: "Managing complex state interactions.",
+      performance: "Optimizing load times.",
+      scalability: "Designing for future growth.",
+    },
+    solutions: {
+      architecture: "Implemented a modular architecture.",
+      performance: "Utilized code splitting.",
+      testing: "Implemented unit tests.",
+    },
   },
   {
     id: "sokos",
@@ -78,6 +88,16 @@ export const projects: Project[] = [
       "Content management with Payload CMS",
       "Role-based access control"
     ],
+    challenges: {
+      technical: "Ensuring secure and efficient NFT transactions.",
+      performance: "Optimizing load times for NFT marketplace.",
+      scalability: "Designing for future growth and scalability.",
+    },
+    solutions: {
+      architecture: "Utilized a modular architecture for scalability.",
+      performance: "Optimized load times with lazy loading and caching.",
+      testing: "Implemented unit tests for NFT marketplace.",
+    },
   },
   {
     id: "traders-hub",
@@ -113,6 +133,16 @@ export const projects: Project[] = [
       "Content management with Strapi CMS",
       "Bilingual support (English & Arabic)"
     ],
+  challenges: {
+    technical: "Implementing real-time market data integration with multiple sources.",
+    performance: "Optimizing the platform for high traffic and concurrent user access.",
+    scalability: "Designing the architecture to handle large volumes of trading data and user activity.",
+  },
+  solutions: {
+    architecture: "Utilized a microservices architecture for scalability.",
+    performance: "Optimized load times with lazy loading and caching.",
+    testing: "Implemented unit tests for trading platform.",
+  },
   },
   {
     id: "aqarchain",
@@ -150,6 +180,16 @@ export const projects: Project[] = [
       "Interactive property maps",
       "Content management with Strapi CMS"
     ],
+    challenges: {
+      technical: "Ensuring secure and efficient property transactions.",
+      performance: "Optimizing load times for property marketplace.",
+      scalability: "Designing for future growth and scalability.",
+    },
+    solutions: {
+      architecture: "Utilized a modular architecture for scalability.",
+      performance: "Optimized load times with lazy loading and caching.",
+      testing: "Implemented unit tests for property marketplace.",
+    },
   },
   {
     id: "traders-hub-sc",
@@ -185,6 +225,16 @@ export const projects: Project[] = [
       "Advanced security measures and compliance",
       "Copy trading functionality"
     ],
+  challenges: {
+    technical: "Implementing real-time market data and price analysis.",
+    performance: "Optimizing the platform for high traffic and concurrent user access.",
+    scalability: "Designing the architecture to handle a large number of users and transactions.",
+  },
+  solutions: {
+    architecture: "Utilized a cloud-based infrastructure for scalability and reliability.",
+    performance: "Implemented load balancing, caching, and content delivery networks for performance optimization.",
+    testing: "Conducted thorough performance testing and load testing to ensure system stability.",
+  },
   },
   {
     id: "sokos-esports",
@@ -220,6 +270,16 @@ export const projects: Project[] = [
       "Team management features",
       "Secure payment processing for entry fees"
     ],
+    challenges: {
+      technical: "Ensuring secure and efficient tournament management.",
+      performance: "Optimizing load times for tournament management.",
+      scalability: "Designing for future growth and scalability.",
+    },
+    solutions: {
+      architecture: "Utilized a modular architecture for scalability.",
+      performance: "Optimized load times with lazy loading and caching.",
+      testing: "Implemented unit tests for tournament management.",
+    },
   },
   {
     id: "smart-meals",
@@ -260,5 +320,15 @@ export const projects: Project[] = [
       "Customer loyalty program",
       "Business client portal"
     ],
+    challenges: {
+      technical: "Ensuring secure and efficient payment processing.",
+      performance: "Optimizing load times for order tracking.",
+      scalability: "Designing for future growth and scalability.",
+    },
+    solutions: {
+      architecture: "Utilized a modular architecture for scalability.",
+      performance: "Optimized load times with lazy loading and caching.",
+      testing: "Implemented unit tests for order tracking.",
+    },
   },
 ]; 

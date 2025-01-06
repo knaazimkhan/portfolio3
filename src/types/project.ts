@@ -15,4 +15,14 @@ export interface Project {
   };
   completedAt?: string;
   highlights: string[];
-} 
+  challenges?: {
+    technical?: string;
+    performance?: string;
+    scalability?: string;
+  }; // Add this section
+  solutions?: {
+    architecture?: string;
+    performance?: string;
+    testing?: string;
+  };
+}
